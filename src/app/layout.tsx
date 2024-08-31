@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SignUpWarner } from "@/components/SignUpWarner/SignUpWarner";
 import styles from "./global.module.scss";
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={styles.body}>{children}</body>
+			<body className={styles.body}>
+				<SignUpWarner />
+				{children}
+			</body>
 		</html>
 	);
 }
