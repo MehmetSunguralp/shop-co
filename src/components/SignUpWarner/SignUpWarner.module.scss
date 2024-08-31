@@ -1,0 +1,48 @@
+@use "../../app/variables" as *;
+
+.signUpWarner {
+	background-color: $accent-color;
+	padding-block: 10px;
+	align-items: center;
+	justify-content: center;
+	font-family: $secondary-font;
+	font-size: 14px;
+	position: relative;
+	@media only screen and (max-width: 450px) {
+		padding-inline: 60px;
+	}
+	@media only screen and (max-width: 380px) {
+		padding-inline: 40px;
+	}
+	.warningText {
+		color: $primary-color;
+		font-weight: $light;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 10px;
+		@media only screen and (max-width: 450px) {
+			gap: 0;
+			text-align: center;
+		}
+		.signUpLink {
+			color: $primary-color;
+			font-weight: 400;
+			text-decoration: none;
+			border-bottom: 1px solid $primary-color;
+		}
+	}
+	.closeIcon {
+		color: $primary-color;
+		font-size: 34px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		position: absolute;
+		right: 80px;
+		@media only screen and (max-width: 580px) {
+			right: 10px;
+		}
+	}
+}
