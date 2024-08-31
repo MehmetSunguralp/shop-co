@@ -20,7 +20,14 @@
 			list-style: none;
 			transition: all 0.1s ease-in-out;
 			cursor: pointer;
-
+			&:first-child {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				span {
+					margin-top: 6px;
+				}
+			}
 			&:hover {
 				color: $secondary-color;
 			}
