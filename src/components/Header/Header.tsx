@@ -2,7 +2,7 @@ import Image from "next/image";
 import { IoIosArrowDown } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
 import { SlBasket } from "react-icons/sl";
-import { FaRegCircleUser } from "react-icons/fa6";
+import { RiUserLine } from "react-icons/ri";
 import mainLogo from "@/public/common/main-logo.svg";
 import styles from "./Header.module.scss";
 
@@ -16,7 +16,7 @@ export const Header = () => {
 				<ul>
 					<li>
 						Shop
-						<span>
+						<span className={styles.downArrow}>
 							<IoIosArrowDown />
 						</span>
 					</li>
@@ -25,13 +25,13 @@ export const Header = () => {
 					<li>Brands</li>
 				</ul>
 			</nav>
-			<div>
+			<div className={styles.inputWrapper}>
 				<span>
 					<GoSearch className={styles.icons} />
 				</span>
 				<input type="text" placeholder="Search for products..." />
 			</div>
-			<div>
+			<div className={styles.accountProccesesIcons}>
 				<span>
 					<GoSearch />
 				</span>
@@ -39,7 +39,7 @@ export const Header = () => {
 					<SlBasket />
 				</span>
 				<span>
-					<FaRegCircleUser />
+					<RiUserLine />
 				</span>
 			</div>
 		</header>
