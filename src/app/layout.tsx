@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SignUpWarner } from "@/components/SignUpWarner/SignUpWarner";
+import { Header } from "@/components/Header/Header";
 import styles from "./global.module.scss";
 
 export const metadata: Metadata = {
@@ -16,6 +17,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={styles.body}>
 				<SignUpWarner />
+				<Header />
 				{children}
 			</body>
 		</html>

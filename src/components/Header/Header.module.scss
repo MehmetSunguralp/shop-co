@@ -1,0 +1,16 @@
+@use "../../app/variables" as *;
+
+.header * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.header {
+	font-family: $secondary-font;
+	display: flex;
+	justify-content: space-around;
+	padding-block: 20px;
+	.navbar {
+		display: flex;
+	}
+}
