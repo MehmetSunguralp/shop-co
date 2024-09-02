@@ -1,3 +1,5 @@
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowDown } from "react-icons/io";
@@ -7,7 +9,17 @@ import { RiUserLine } from "react-icons/ri";
 import mainLogo from "@/public/common/main-logo.svg";
 import styles from "./Header.module.scss";
 
-export const Header = () => {
+export const Header: React.FC = () => {
+	const [shopPopUp, setShopPopUp] = useState("none");
+
+	const handleMouseEnter = (): void => {
+		setShopPopUp("flex");
+	};
+
+	const handleMouseLeave = (): void => {
+		setShopPopUp("none");
+	};
+
 	return (
 		<header className={styles.header}>
 			<Link href={"/"}>
@@ -16,12 +28,28 @@ export const Header = () => {
 
 			<nav className={styles.navbar}>
 				<ul>
-					<li>
-						Shop
-						<span className={styles.downArrow}>
-							<IoIosArrowDown />
-						</span>
-					</li>
+					<div className={styles.shopWrapper} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+						<li className={styles.popUpMenu}>
+							Shop
+							<span className={styles.downArrow}>
+								<IoIosArrowDown />
+							</span>
+							<ul style={{ display: shopPopUp }}>
+								<li>
+									<Link href={"/womens-clothing"}>Women's Clothing</Link>
+								</li>
+								<li>
+									<Link href={"/mens-clothing"}>Men's Clothing</Link>
+								</li>
+								<li>
+									<Link href={"/cosmetics"}>Cosmetics</Link>
+								</li>
+								<li>
+									<Link href={"/accesories"}>Accesories</Link>
+								</li>
+							</ul>
+						</li>
+					</div>
 					<li>
 						<Link href={"/on-sale"}>On Sale</Link>
 					</li>
