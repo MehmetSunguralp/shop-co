@@ -85,6 +85,10 @@
 			outline: transparent;
 			border: none;
 			background-color: $secondary-color;
+			transition: all 0.2s;
+			&:focus {
+				box-shadow: 0 0 10px 1px $secondary-color;
+			}
 		}
 	}
 	.accountProccesesIcons {
