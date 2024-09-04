@@ -36,6 +36,9 @@
 					padding: 10px;
 					border-radius: 10px;
 					box-shadow: 0 0 10px 1px $secondary-color;
+					li * {
+						transition: all 0.1s ease-in-out;
+					}
 					li *:hover {
 						color: $secondary-color;
 					}
@@ -58,9 +61,13 @@
 					color: $secondary-color;
 				}
 			}
+
 			*:hover {
 				color: $secondary-color;
 			}
+		}
+		li * {
+			transition: all 0.1s ease-in-out;
 		}
 	}
 	.inputWrapper {
@@ -97,12 +104,15 @@
 		span {
 			font-size: 26px;
 			cursor: pointer;
-			transition: all 0.1s ease-in-out;
+			transition: all 0.2s ease-in-out;
 			&:first-child {
 				display: none;
 			}
+			& {
+				transition: all 0.2s ease-in-out;
+			}
 			&:hover {
-				color: $secondary-color;
+				transform: scale(104%);
 			}
 		}
 	}
