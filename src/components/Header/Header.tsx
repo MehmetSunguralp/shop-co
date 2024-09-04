@@ -6,11 +6,16 @@ import { IoIosArrowDown } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
 import { SlBasket } from "react-icons/sl";
 import { RiUserLine } from "react-icons/ri";
+import { RxHamburgerMenu } from "react-icons/rx";
 import mainLogo from "@/public/common/main-logo.svg";
 import styles from "./Header.module.scss";
 
 export const Header: React.FC = () => {
 	const [shopPopUp, setShopPopUp] = useState("none");
+	const [hamburgerMenu, setHamburgerMenu] = useState("translateY(-120vh)");
+	const handleHamburgerMenu = () => {
+		setHamburgerMenu((prevPlace) => (prevPlace == "translateY(-120vh)" ? "translateY(0)" : "translateY(-120vh)"));
+	};
 
 	const handleMouseEnter = (): void => {
 		setShopPopUp("flex");
@@ -22,6 +27,9 @@ export const Header: React.FC = () => {
 
 	return (
 		<header className={styles.header}>
+			<span className={styles.hamburgerIcon} onClick={handleHamburgerMenu}>
+				<RxHamburgerMenu />
+			</span>
 			<Link href={"/"}>
 				<Image src={mainLogo} alt="shop.co logo" />
 			</Link>
@@ -60,6 +68,12 @@ export const Header: React.FC = () => {
 						<Link href={"/brands"}>Brands</Link>
 					</li>
 				</ul>
+			</nav>
+			<nav className={styles.hamburgerNavbar} style={{ transform: hamburgerMenu }}>
+				{" "}
+				<span className={styles.hamburgerIcon} onClick={handleHamburgerMenu}>
+					<RxHamburgerMenu />
+				</span>
 			</nav>
 			<div className={styles.inputWrapper}>
 				<span>
