@@ -15,6 +15,19 @@
 	gap: 80px;
 	padding-block: 26px;
 	position: relative;
+
+	@media screen and (max-width: 700px) {
+		padding-left: 10px;
+	}
+	@media screen and (max-width: 600px) {
+		padding-left: 28px;
+	}
+	@media screen and (max-width: 500px) {
+		padding-left: 40px;
+	}
+	@media screen and (max-width: 400px) {
+		padding-left: 46px;
+	}
 	.hamburgerIcon {
 		position: absolute;
 		left: 20px;
@@ -24,16 +37,11 @@
 		@media screen and (max-width: 850px) {
 			display: block;
 		}
+		@media screen and (max-width: 400px) {
+			left: 10px;
+		}
 	}
-	.hamburgerNavbar {
-		width: 100%;
-		height: 50vh;
-		position: absolute;
-		left: 0;
-		top: -40px;
-		background-color: rgba(32, 30, 30, 0.718);
-		transition: all 0.4s ease-in-out;
-	}
+
 	@media screen and (max-width: 1440px) {
 		gap: 20px;
 	}
@@ -70,6 +78,9 @@
 					padding: 10px;
 					border-radius: 10px;
 					box-shadow: 0 0 10px 1px $secondary-color;
+					@media screen and (max-width: 1050px) {
+						top: 20px;
+					}
 					li * {
 						transition: all 0.1s ease-in-out;
 					}
@@ -150,6 +161,7 @@
 			}
 		}
 	}
+
 	.accountProccesesIcons {
 		display: flex;
 		gap: 20px;
@@ -173,5 +185,74 @@
 				transform: scale(104%);
 			}
 		}
+	}
+}
+.mobileInputWrapper {
+	width: 100vw;
+	left: 0;
+	bottom: -20px;
+
+	justify-content: center;
+
+	input {
+		font-family: $secondary-font;
+		font-size: 14px;
+		text-indent: 20px;
+		width: 90%;
+		height: 36px;
+		border-radius: 60px;
+		outline: transparent;
+		border: none;
+		background-color: $secondary-color;
+		transition: all 0.2s;
+		&:focus {
+			box-shadow: 0 0 10px 1px $secondary-color;
+		}
+	}
+}
+.hamburgerNavbar * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	color: $primary-color;
+	font-family: $primary-font;
+}
+.hamburgerNavbar {
+	width: 100%;
+	height: 100vh;
+	position: absolute;
+	left: 0;
+	top: 0px;
+	background-color: $accent-color;
+	display: flex;
+	justify-content: center;
+	transition: all 0.4s ease-in-out;
+
+	.navbar {
+		height: 100%;
+		padding-block: 50px;
+		ul {
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+			li {
+				font-size: 30px;
+				text-align: center;
+				@media screen and (max-width: 600px) {
+					font-size: 20px;
+				}
+			}
+		}
+	}
+	.hamburgerCloseIcon * {
+		color: $primary-color;
+		cursor: pointer;
+		font-size: 30px;
+		position: absolute;
+		top: 10px;
+		left: 10px;
 	}
 }
