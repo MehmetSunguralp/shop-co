@@ -1,0 +1,73 @@
+@use "../../app/variables" as *;
+
+.hero * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.hero {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	background-color: $hero-bg;
+	.textContent {
+		max-width: 600px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		h1 {
+			font-family: $primary-font;
+			font-size: 64px;
+		}
+		p {
+			font-family: $secondary-font;
+			line-height: 22px;
+			color: $gray;
+		}
+		button {
+			width: 210px;
+			height: 52px;
+			border: transparent;
+			background-color: $accent-color;
+			color: $primary-color;
+			border-radius: 50px;
+			font-family: $secondary-font;
+			font-size: 16px;
+			transition: all 0.1s ease-in-out;
+			&:hover {
+				background-color: $primary-color;
+				color: $accent-color;
+				border: 1px solid $accent-color;
+				cursor: pointer;
+			}
+		}
+		.statsWrapper {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-block: 50px;
+			span {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				align-items: center;
+				.statsNum {
+					color: $accent-color;
+					font-family: $secondary-font;
+					font-size: 40px;
+					font-weight: 500;
+				}
+			}
+		}
+	}
+	.heroImageWrapper {
+		position: relative;
+		width: 670px;
+		height: 670px;
+		img {
+			object-fit: cover;
+		}
+	}
+}
