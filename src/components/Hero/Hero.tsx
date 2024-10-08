@@ -29,7 +29,7 @@ export const Hero: React.FC = () => {
 				</div>
 			</div>
 			<div className={styles.heroImageWrapper}>
-				<Image src={heroImage} alt="trendy-woman" fill />
+				<Image src={heroImage} alt="trendy-woman" fill priority />
 			</div>
 		</section>
 	);
