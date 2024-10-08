@@ -26,8 +26,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ id, thumbnail, title, 
 					<span>5</span>
 				</span>
 			</span>
-
-			<p className={styles.price}>${price}</p>
+			<div className={styles.priceContainer}>
+				<span className={styles.price}>${Math.round(price - (price * discountPercentage) / 100)}</span>
+				<span className={styles.oldPrice}>${Math.ceil(price)}</span>
+				<span className={styles.discountPercentage}>-%{Math.round(discountPercentage)}</span>
+			</div>
 		</Link>
 	);
 };

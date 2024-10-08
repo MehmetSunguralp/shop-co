@@ -11,7 +11,7 @@
 	transition: all 0.1s ease-in-out;
 	&:hover {
 		transform: translateY(-4px);
-        opacity: 0.8;
+		opacity: 0.8;
 	}
 	.thumbnailWrapper {
 		position: relative;
@@ -34,8 +34,23 @@
 			}
 		}
 	}
-	.price {
+	.priceContainer {
+        display: flex;
+        align-items: center;
+        gap: 20px;
 		font-size: 24px;
 		font-weight: 600;
+		.oldPrice {
+			color: $gray;
+            text-decoration: line-through;
+		}
+        .discountPercentage {
+            color: $red;
+            font-size: 16px;
+            font-weight: 400;
+            background-color: $red-transparent;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
 	}
 }
