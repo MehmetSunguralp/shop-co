@@ -1,0 +1,42 @@
+@use "../../app/variables" as *;
+
+.brandBanner * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.brandBanner {
+	height: 120px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	background-color: $accent-color;
+	@media screen and (max-width: 1050px) {
+		height: 80px;
+	}
+	@media screen and (max-width: 600px) {
+		height: unset;
+		padding: 20px 80px;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+	@media screen and (max-width: 500px) {
+		padding: 20px 40px;
+	}
+	.logoWrapper {
+		position: relative;
+		width: 200px;
+		height: 38px;
+		@media screen and (max-width: 1440px) {
+			width: 160px;
+		}
+		@media screen and (max-width: 1050px) {
+			width: 100px;
+			height: 26px;
+		}
+		@media screen and (max-width: 600px) {
+			width: 100px;
+		}
+	}
+}

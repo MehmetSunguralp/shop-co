@@ -38,7 +38,7 @@
 		}
 		@media only screen and (max-width: 600px) {
 			max-width: 400px;
-		
+
 			align-items: center;
 		}
 		@media only screen and (max-width: 450px) {
@@ -107,6 +107,7 @@
 			justify-content: space-between;
 			align-items: center;
 			padding-block: 50px;
+			width: 100%;
 			@media only screen and (max-width: 1440px) {
 				padding-block: 20px;
 			}
@@ -114,7 +115,8 @@
 				padding-block: 10px;
 			}
 			@media only screen and (max-width: 450px) {
-				flex-direction: column;
+				flex-wrap: wrap;
+				justify-content: center;
 				gap: 20px;
 			}
 			span {
@@ -165,7 +167,7 @@
 		}
 
 		@media only screen and (max-width: 600px) {
-			width: 300px;
+			width: 280px;
 			height: 300px;
 		}
 		img {
