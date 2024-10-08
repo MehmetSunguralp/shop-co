@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "./Hero.module.scss";
 import heroImage from "@/public/Hero/hero.png";
+import { fetchProducts } from "@/api/api";
 
 export const Hero: React.FC = () => {
 	return (
@@ -29,7 +30,13 @@ export const Hero: React.FC = () => {
 				</div>
 			</div>
 			<div className={styles.heroImageWrapper}>
-				<Image src={heroImage} alt="trendy-woman" fill priority />
+				<Image
+					src={heroImage}
+					alt="trendy-woman"
+					fill
+					priority={false}
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+				/>
 			</div>
 		</section>
 	);
