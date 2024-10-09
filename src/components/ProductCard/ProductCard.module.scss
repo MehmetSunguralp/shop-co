@@ -9,9 +9,28 @@
 	gap: 20px;
 	cursor: pointer;
 	transition: all 0.1s ease-in-out;
+	max-width: 300px;
+	@media screen and (max-width: 1440px) {
+		max-width: 220px;
+	}
+	@media screen and (max-width: 1050px) {
+		max-width: 160px;
+	}
+	@media screen and (max-width: 800px) {
+		max-width: 140px;
+	}
+
 	&:hover {
 		transform: translateY(-4px);
 		opacity: 0.8;
+	}
+	&:last-child {
+		@media screen and (max-width: 680px) {
+			display: none;
+		}
+		@media screen and (max-width: 530px) {
+			display: flex;
+		}
 	}
 	.thumbnailWrapper {
 		position: relative;
@@ -19,9 +38,25 @@
 		height: 300px;
 		background-color: $product-bg;
 		border-radius: 10px;
+		@media screen and (max-width: 1440px) {
+			width: 220px;
+			height: 220px;
+		}
+		@media screen and (max-width: 1050px) {
+			width: 160px;
+			height: 160px;
+		}
+		@media screen and (max-width: 800px) {
+			width: 140px;
+			height: 140px;
+		}
 	}
 	.title {
 		font-weight: 500;
+		height: 40px;
+		@media screen and (max-width: 1050px) {
+			font-size: 14px;
+		}
 	}
 	.ratingContainer {
 		display: flex;
@@ -35,22 +70,46 @@
 		}
 	}
 	.priceContainer {
-        display: flex;
-        align-items: center;
-        gap: 20px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
 		font-size: 24px;
 		font-weight: 600;
+		@media screen and (max-width: 1050px) {
+			font-size: 18px;
+		}
+		@media screen and (max-width: 800px) {
+			font-size: 16px;
+		}
+
 		.oldPrice {
 			color: $gray;
-            text-decoration: line-through;
+			text-decoration: line-through;
+			font-size: 20px;
+			@media screen and (max-width: 1050px) {
+				font-size: 16px;
+			}
+			@media screen and (max-width: 800px) {
+				font-size: 14px;
+				letter-spacing: -1px;
+			}
 		}
-        .discountPercentage {
-            color: $red;
-            font-size: 16px;
-            font-weight: 400;
-            background-color: $red-transparent;
-            padding: 4px 10px;
-            border-radius: 20px;
-        }
+		.discountPercentage {
+			color: $red;
+			font-size: 16px;
+			font-weight: 400;
+			background-color: $red-transparent;
+			padding: 4px 10px;
+			border-radius: 20px;
+			@media screen and (max-width: 1050px) {
+				font-size: 12px;
+				padding: 4px;
+			}
+			@media screen and (max-width: 800px) {
+				font-size: 12px;
+				padding: 2px;
+				letter-spacing: -1px;
+			}
+		}
 	}
 }
