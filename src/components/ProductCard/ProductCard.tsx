@@ -24,6 +24,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ id, thumbnail, title, 
 	if (Math.floor(discountPercentage) === 0) {
 		visibility = "none";
 	}
+	//Calculate discounted price
+	const discount = Math.floor(discountPercentage);
+	const newPrice = discount !== 0 ? price - (price * discount) / 100 : price;
 	return (
 		<Link href={""} className={styles.productCard} title={title} id={String(id)}>
 			<div className={styles.thumbnailWrapper}>
@@ -41,13 +44,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ id, thumbnail, title, 
 			</span>
 			<div className={styles.priceContainer}>
 				<span className={styles.price}>
-					{Math.floor(discountPercentage) !== 0 ? "$" + Math.floor(price - (price * discountPercentage) / 100) : "$" + price}
+					{"$" +
+						newPrice.toLocaleString(undefined, {
+							minimumFractionDigits: 2,
+							maximumFractionDigits: 2,
+						})}
 				</span>
 				<span className={styles.oldPrice} style={{ display: visibility }}>
-					{"$" + Math.floor(price)}
+					{"$" +
+						price.toLocaleString(undefined, {
+							minimumFractionDigits: 2,
+							maximumFractionDigits: 2,
+						})}
 				</span>
 				<span className={styles.discountPercentage} style={{ display: visibility }}>
-					{"-%" + Math.round(discountPercentage)}
+					{"-%" + discount}
 				</span>
 			</div>
 		</Link>
