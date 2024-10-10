@@ -63,6 +63,21 @@
 			height: 290px;
 			border-radius: 20px;
 			overflow: hidden;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				opacity: 0.8;
+				box-shadow: 0 0 10px 2px $primary-color;
+			}
+
+			&:hover * ~ p {
+				font-size: 40px;
+				@media screen and (max-width: 1440px) {
+					font-size: 34px;
+				}
+				@media screen and (max-width: 1050px) {
+					font-size: 26px;
+				}
+			}
 			@media screen and (max-width: 1440px) {
 				width: 300px;
 				height: 230px;
@@ -91,6 +106,7 @@
 				font-weight: 600;
 				left: 30px;
 				top: 30px;
+				transition: all 0.2s ease-in-out;
 				@media screen and (max-width: 1440px) {
 					left: 20px;
 					top: 20px;
@@ -107,6 +123,20 @@
 			height: 290px;
 			border-radius: 20px;
 			overflow: hidden;
+			transition: all 0.2s ease-in-out;
+			&:hover {
+				opacity: 0.8;
+				box-shadow: 0 0 10px 2px $primary-color;
+			}
+			&:hover * ~ p {
+				font-size: 40px;
+				@media screen and (max-width: 1440px) {
+					font-size: 34px;
+				}
+				@media screen and (max-width: 1050px) {
+					font-size: 26px;
+				}
+			}
 			@media screen and (max-width: 1440px) {
 				width: 520px;
 				height: 230px;
@@ -135,6 +165,7 @@
 				font-weight: 600;
 				left: 30px;
 				top: 30px;
+				transition: all 0.2s ease-in-out;
 				@media screen and (max-width: 1440px) {
 					left: 20px;
 					top: 20px;
