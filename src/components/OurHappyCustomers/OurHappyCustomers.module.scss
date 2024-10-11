@@ -1,0 +1,42 @@
+@use "../../app/variables" as *;
+
+.ourHappyCustomers * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+.ourHappyCustomers {
+	.header {
+		max-width: 1240px;
+		margin-inline: auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.sectionTitle {
+			font-family: $primary-font;
+			font-size: 48px;
+		}
+		.navigateCommentButtonsContainer {
+			display: flex;
+			gap: 20px;
+		}
+		.previousBtn,
+		.nextBtn {
+			background-color: transparent;
+			cursor: pointer;
+			border: none;
+		}
+		.nextBtn {
+			transform: rotate(180deg);
+		}
+	}
+	.commentsSection {
+		margin-block: 30px;
+		display: flex;
+		overflow: hidden;
+		gap: 20px;
+	}
+}

@@ -1,0 +1,42 @@
+@use "../../app/variables" as *;
+
+.commentCard * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+.commentCard {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	min-width: 400px;
+	height: 240px;
+	border: 2px solid $secondary-color;
+	border-radius: 20px;
+	padding: 30px;
+	transition: background-color 0.2s ease-in-out;
+	&:hover {
+		background-color: $secondary-color;
+	}
+	.stars {
+		display: flex;
+		gap: 10px;
+	}
+	.reviewer {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		p {
+			font-family: $secondary-font;
+			font-size: 20px;
+			font-weight: 500;
+			color: $accent-color;
+		}
+	}
+	.comment {
+		font-family: $secondary-font;
+		color: $gray;
+	}
+}
