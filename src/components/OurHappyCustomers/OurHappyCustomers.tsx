@@ -1,15 +1,25 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { fetchProducts } from "@/api/api";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
 import { ThreeDots } from "react-loader-spinner";
-import arrow from "@/public/common/arrow.svg";
+import rightArrow from "@/public/common/right-arrow.svg";
+import leftArrow from "@/public/common/left-arrow.svg";
 import styles from "./OurHappyCustomers.module.scss";
 import { CommentCard } from "../CommentCard/CommentCard";
 
 export const OurHappyCustomers = () => {
 	const [products, setProducts] = useState<object[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
+	const navigationNextRef = useRef<HTMLButtonElement>(null);
+	const navigationPrevRef = useRef<HTMLButtonElement>(null);
+	const [slidesPerView, setSlidesPerView] = useState<number>(3);
 
 	useEffect(() => {
 		fetchProducts().then((data) => {
@@ -39,24 +49,36 @@ export const OurHappyCustomers = () => {
 			<div className={styles.header}>
 				<h3 className={styles.sectionTitle}>OUR HAPPY CUSTOMERS</h3>
 				<div className={styles.navigateCommentButtonsContainer}>
-					<button className={styles.previousBtn}>
-						<Image src={arrow} alt="previous-btn" />
+					<button className={styles.previousBtn} ref={navigationPrevRef}>
+						<Image src={leftArrow} alt="previous-btn" />
 					</button>
-					<button className={styles.nextBtn}>
-						<Image src={arrow} alt="next-btn" />
+					<button className={styles.nextBtn} ref={navigationNextRef}>
+						<Image src={rightArrow} alt="next-btn" />
 					</button>
 				</div>
 			</div>
 			<div className={styles.commentsSection}>
-				{bestReviews.map((product: any, index: number) => (
-					<CommentCard
-						key={index}
-						id={product.id}
-						rating={product.bestReview.rating}
-						reviewerName={product.bestReview.reviewerName}
-						comment={product.bestReview.comment}
-					/>
-				))}
+				<Swiper
+					// install Swiper modules
+					modules={[Navigation]}
+					spaceBetween={20}
+					slidesPerView={slidesPerView}
+					navigation={{
+						prevEl: navigationPrevRef.current,
+						nextEl: navigationNextRef.current,
+					}}
+				>
+					{bestReviews.map((product: any, index: number) => (
+						<SwiperSlide key={index}>
+							<CommentCard
+								id={product.id}
+								rating={product.bestReview.rating}
+								reviewerName={product.bestReview.reviewerName}
+								comment={product.bestReview.comment}
+							/>
+						</SwiperSlide>
+					))}
+				</Swiper>
 			</div>
 		</div>
 	);
