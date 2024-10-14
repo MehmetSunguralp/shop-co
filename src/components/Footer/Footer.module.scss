@@ -1,0 +1,40 @@
+@use "../../app/variables" as *;
+
+.footer {
+	margin-top: 100px;
+	.form {
+		background-color: $accent-color;
+		max-width: 1340px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-inline: auto;
+		border-radius: 28px;
+		h3 {
+			color: $primary-color;
+			font-family: $primary-font;
+			font-size: 48px;
+			max-width: 700px;
+		}
+		.submitArea {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			.emailInput {
+				width: 350px;
+				height: 50px;
+				border-radius: 50px;
+				border: none;
+				outline: none;
+			}
+			.submitBtn {
+				width: 350px;
+				height: 50px;
+				border-radius: 50px;
+				border: none;
+				outline: none;
+				background-color: $primary-color;
+			}
+		}
+	}
+}
