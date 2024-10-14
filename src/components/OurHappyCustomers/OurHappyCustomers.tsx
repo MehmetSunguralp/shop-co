@@ -21,11 +21,23 @@ export const OurHappyCustomers = () => {
 	const navigationPrevRef = useRef<HTMLButtonElement>(null);
 	const [slidesPerView, setSlidesPerView] = useState<number>(3);
 
+	const handleSlidesPerView = () => {
+		const target = window.innerWidth;
+		if (target <= 1050 && target > 800) {
+			setSlidesPerView(2);
+		} else if (target <= 800) {
+			setSlidesPerView(1);
+		} else {
+			setSlidesPerView(3);
+		}
+	};
+	window.addEventListener("resize", () => handleSlidesPerView());
 	useEffect(() => {
 		fetchProducts().then((data) => {
 			setProducts(data.products);
 			setLoading(false);
 		});
+		handleSlidesPerView();
 	}, []);
 
 	if (loading) {
@@ -59,7 +71,6 @@ export const OurHappyCustomers = () => {
 			</div>
 			<div className={styles.commentsSection}>
 				<Swiper
-					// install Swiper modules
 					modules={[Navigation]}
 					spaceBetween={20}
 					slidesPerView={slidesPerView}

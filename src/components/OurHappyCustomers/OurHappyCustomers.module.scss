@@ -6,6 +6,10 @@
 	box-sizing: border-box;
 	text-decoration: none;
 }
+.loader {
+	display: flex;
+	justify-content: center;
+}
 
 .ourHappyCustomers {
 	max-width: 1340px;
@@ -16,16 +20,32 @@
 	@media only screen and (max-width: 1050px) {
 		max-width: 660px;
 	}
+	@media only screen and (max-width: 800px) {
+		max-width: 460px;
+	}
+	@media only screen and (max-width: 600px) {
+		padding-inline: 20px;
+	}
 	.header {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		@media only screen and (max-width: 600px) {
+			flex-direction: column;
+			gap: 20px;
+		}
 
 		.sectionTitle {
 			font-family: $primary-font;
 			font-size: 48px;
 			@media only screen and (max-width: 1050px) {
 				font-size: 36px;
+			}
+			@media only screen and (max-width: 800px) {
+				font-size: 24px;
+			}
+			@media only screen and (max-width: 450px) {
+				font-size: 18px;
 			}
 		}
 		.navigateCommentButtonsContainer {
