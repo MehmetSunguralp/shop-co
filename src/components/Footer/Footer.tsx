@@ -1,4 +1,6 @@
+import Image from "next/image";
 import styles from "./Footer.module.scss";
+import emailIcon from "@/public/common/email.svg";
 
 export const Footer = () => {
 	return (
@@ -6,7 +8,12 @@ export const Footer = () => {
 			<form className={styles.form}>
 				<h3>STAY UP TO DATE ABOUT OUR LATEST OFFERS</h3>
 				<div className={styles.submitArea}>
-					<input type="email" className={styles.emailInput} />
+					<div className={styles.inputWrapper}>
+						<span className={styles.iconWrapper}>
+							<Image src={emailIcon} alt="email-icon" />
+						</span>
+						<input type="email" className={styles.emailInput} placeholder="Enter your email address" />
+					</div>
 					<button className={styles.submitBtn}>Subscribe to Newsletter</button>
 				</div>
 			</form>

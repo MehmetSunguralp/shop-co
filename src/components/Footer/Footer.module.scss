@@ -20,12 +20,25 @@
 			display: flex;
 			flex-direction: column;
 			gap: 20px;
-			.emailInput {
-				width: 350px;
-				height: 50px;
-				border-radius: 50px;
-				border: none;
-				outline: none;
+			.inputWrapper {
+				position: relative;
+				display: flex;
+				align-items: center;
+				.iconWrapper {
+					position: absolute;
+					left: 14px;
+					margin-top: 4px;
+				}
+				.emailInput {
+					width: 350px;
+					height: 50px;
+					border-radius: 50px;
+					border: none;
+					outline: none;
+					font-family: $secondary-font;
+					font-size: 16px;
+					text-indent: 40px;
+				}
 			}
 			.submitBtn {
 				width: 350px;
@@ -34,6 +47,15 @@
 				border: none;
 				outline: none;
 				background-color: $primary-color;
+				font-family: $secondary-font;
+				font-size: 16px;
+				transition: all 0.1s ease-in-out;
+				&:hover {
+					background-color: $accent-color;
+					color: $primary-color;
+					cursor: pointer;
+					border: 1px solid $primary-color;
+				}
 			}
 		}
 	}
