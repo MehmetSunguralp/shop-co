@@ -11,6 +11,7 @@
 	background-color: $secondary-color;
 	position: relative;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	.form {
@@ -80,12 +81,16 @@
 	}
 	.footerNav {
 		display: flex;
-		gap: 100px;
+		max-width: 1340px;
+		width: 100%;
+		justify-content: space-between;
 		.navEl {
-			flex: 1;
 			display: flex;
 			gap: 20px;
 			flex-direction: column;
+			&:first-child {
+				width: 250px;
+			}
 			.description {
 				font-family: $secondary-font;
 				font-size: 14px;
@@ -113,6 +118,36 @@
 						background-color: $gray;
 					}
 				}
+			}
+		}
+	}
+	hr {
+		max-width: 1340px;
+		width: 100%;
+		margin-block: 40px 10px;
+	}
+	.copyrightSection {
+		max-width: 1340px;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		p {
+			font-family: $secondary-font;
+			color: $gray;
+			font-size: 14px;
+		}
+		.paymentMethodIcons {
+			display: flex;
+			gap: 20px;
+			.paymentMethodIconWrapper {
+				border-radius: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 46px;
+				height: 30px;
+				background-color: $primary-color;
 			}
 		}
 	}

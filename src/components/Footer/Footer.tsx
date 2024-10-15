@@ -6,6 +6,11 @@ import twitter from "@/public/common/twitter.svg";
 import facebook from "@/public/common/facebook.svg";
 import instagram from "@/public/common/instagram.svg";
 import github from "@/public/common/github.svg";
+import visa from "@/public/Footer/visa.svg";
+import mastercard from "@/public/Footer/mastercard.svg";
+import paypal from "@/public/Footer/paypal.svg";
+import applePay from "@/public/Footer/apple-pay.svg";
+import googlePay from "@/public/Footer/google-pay.svg";
 
 export const Footer = () => {
 	return (
@@ -72,6 +77,27 @@ export const Footer = () => {
 					<p className={styles.widget}>Development Tutorial</p>
 					<p className={styles.widget}>How To- Blog</p>
 					<p className={styles.widget}>Youtube Playlist</p>
+				</div>
+			</div>
+			<hr />
+			<div className={styles.copyrightSection}>
+				<p>Shop.co © 2000-2023, All Rights Reserved</p>
+				<div className={styles.paymentMethodIcons}>
+					<span className={styles.paymentMethodIconWrapper}>
+						<Image width={32} height={32} src={visa} alt="visa" />
+					</span>
+					<span className={styles.paymentMethodIconWrapper}>
+						<Image width={32} height={32} src={mastercard} alt="visa" />
+					</span>
+					<span className={styles.paymentMethodIconWrapper}>
+						<Image width={32} height={32} src={paypal} alt="visa" />
+					</span>
+					<span className={styles.paymentMethodIconWrapper}>
+						<Image width={32} height={32} src={applePay} alt="visa" />
+					</span>
+					<span className={styles.paymentMethodIconWrapper}>
+						<Image width={32} height={32} src={googlePay} alt="visa" />
+					</span>
 				</div>
 			</div>
 		</footer>
