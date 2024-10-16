@@ -13,13 +13,13 @@ export const BrowseByDressStyle: React.FC = () => {
 			<div className={styles.row}>
 				<Link href={"/"}>
 					<div className={styles.smallBox}>
-						<Image src={casual} alt="casual-dress" fill />
+						<Image src={casual} alt="casual-dress" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
 						<p>Casual</p>
 					</div>
 				</Link>
 				<Link href={"/"}>
 					<div className={styles.largeBox}>
-						<Image src={formal} alt="formal-dress" fill />
+						<Image src={formal} alt="formal-dress" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
 						<p>Formal</p>
 					</div>
 				</Link>
@@ -27,13 +27,13 @@ export const BrowseByDressStyle: React.FC = () => {
 			<div className={styles.row}>
 				<Link href={"/"}>
 					<div className={styles.largeBox}>
-						<Image src={party} alt="formal-dress" fill />
+						<Image src={party} alt="formal-dress" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
 						<p>Party</p>
 					</div>
 				</Link>
 				<Link href={"/"}>
 					<div className={styles.smallBox}>
-						<Image src={gym} alt="casual-dress" fill />
+						<Image src={gym} alt="casual-dress" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
 						<p>Party</p>
 					</div>
 				</Link>

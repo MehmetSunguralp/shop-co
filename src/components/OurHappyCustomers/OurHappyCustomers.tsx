@@ -19,7 +19,7 @@ export const OurHappyCustomers = () => {
 	const navigationPrevRef = useRef<HTMLButtonElement>(null);
 	const [slidesPerView, setSlidesPerView] = useState<number>(3);
 
-	//Handles comment cards
+	// Handle swiper sliders number
 	const handleSlidesPerView = () => {
 		if (typeof window !== "undefined") {
 			const target = window.innerWidth;
@@ -33,21 +33,22 @@ export const OurHappyCustomers = () => {
 		}
 	};
 
+	// useEffect to handle client-side code
 	useEffect(() => {
-		const handleResize = () => handleSlidesPerView();
-
+		// Fetch the products
 		fetchProducts().then((data) => {
 			setProducts(data.products);
 			setLoading(false);
 		});
 
+		// Handle slide views when window is resized
 		handleSlidesPerView();
+		if (typeof window !== "undefined") {
+			const handleResize = () => handleSlidesPerView();
+			window.addEventListener("resize", handleResize);
 
-		window.addEventListener("resize", handleResize);
-
-		return () => {
-			window.removeEventListener("resize", handleResize);
-		};
+			return () => window.removeEventListener("resize", handleResize);
+		}
 	}, []);
 
 	if (loading) {
