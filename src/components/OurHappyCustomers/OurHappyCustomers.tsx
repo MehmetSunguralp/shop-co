@@ -2,12 +2,10 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { fetchProducts } from "@/api/api";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 import { ThreeDots } from "react-loader-spinner";
 import rightArrow from "@/public/common/right-arrow.svg";
 import leftArrow from "@/public/common/left-arrow.svg";
@@ -21,23 +19,36 @@ export const OurHappyCustomers = () => {
 	const navigationPrevRef = useRef<HTMLButtonElement>(null);
 	const [slidesPerView, setSlidesPerView] = useState<number>(3);
 
+	// Handle swiper sliders number
 	const handleSlidesPerView = () => {
-		const target = window.innerWidth;
-		if (target <= 1050 && target > 800) {
-			setSlidesPerView(2);
-		} else if (target <= 800) {
-			setSlidesPerView(1);
-		} else {
-			setSlidesPerView(3);
+		if (typeof window !== "undefined") {
+			const target = window.innerWidth;
+			if (target <= 1050 && target > 800) {
+				setSlidesPerView(2);
+			} else if (target <= 800) {
+				setSlidesPerView(1);
+			} else {
+				setSlidesPerView(3);
+			}
 		}
 	};
-	window.addEventListener("resize", () => handleSlidesPerView());
+
+	// useEffect to handle client-side code
 	useEffect(() => {
+		// Fetch the products
 		fetchProducts().then((data) => {
 			setProducts(data.products);
 			setLoading(false);
 		});
+
+		// Handle slide views when window is resized
 		handleSlidesPerView();
+		if (typeof window !== "undefined") {
+			const handleResize = () => handleSlidesPerView();
+			window.addEventListener("resize", handleResize);
+
+			return () => window.removeEventListener("resize", handleResize);
+		}
 	}, []);
 
 	if (loading) {
@@ -48,7 +59,7 @@ export const OurHappyCustomers = () => {
 		);
 	}
 
-	//Sort best reviews
+	// Sort best reviews
 	const bestReviews = products.map((product: any) => {
 		return {
 			title: product.title,
