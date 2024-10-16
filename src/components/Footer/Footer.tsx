@@ -37,16 +37,16 @@ export const Footer = () => {
 					</p>
 					<div className={styles.socialIcons}>
 						<span className={styles.socialIconWrapper}>
-							<Image src={twitter} alt="twitter-icon" />
+							<Image fill  src={twitter} alt="twitter-icon" />
 						</span>
 						<span className={styles.socialIconWrapper}>
-							<Image src={facebook} alt="facebook-icon" />
+							<Image fill src={facebook} alt="facebook-icon" />
 						</span>
 						<span className={styles.socialIconWrapper}>
-							<Image src={instagram} alt="twitter-icon" />
+							<Image fill src={instagram} alt="twitter-icon" />
 						</span>
 						<span className={styles.socialIconWrapper}>
-							<Image src={github} alt="github-icon" />
+							<Image fill src={github} alt="github-icon" />
 						</span>
 					</div>
 				</div>
