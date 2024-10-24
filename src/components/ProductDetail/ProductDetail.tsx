@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { fetchProducts } from "@/api/api";
 import { ProductDetailProps } from "@/types/ProductDetailProps";
+import { ThreeDots } from "react-loader-spinner";
 import styles from "./ProductDetail.module.scss";
 import starIcon from "@/public/common/star.svg";
 import plusIcon from "@/public/common/plus.svg";
@@ -40,7 +41,20 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 	}, [productId]);
 
 	if (!product) {
-		return <div>Loading product details...</div>;
+		return (
+			<div  className={styles.loadingSpinner}>
+				<ThreeDots
+					visible={true}
+					height="80"
+					width="80"
+					color="#000000"
+					radius="9"
+					ariaLabel="three-dots-loading"
+					wrapperStyle={{}}
+					wrapperClass=""
+				/>
+			</div>
+		);
 	}
 
 	// Count rating stars
