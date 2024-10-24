@@ -1,43 +1,356 @@
 @use "../../app/variables" as *;
-
+.productDetail * {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 .productDetail {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 20px;
-
-	.thumbnailsContainer {
-		display: flex;
+	@media only screen and (max-width: 800px) {
 		flex-direction: column;
-		height: 530px;
-		justify-content: space-between;
-
-		.thumbnailWrapper {
-			position: relative;
-			width: 150px; // Adjust to match the design
-			height: 150px; // Adjust to match the design
-			border: 1px solid transparent;
-			border-radius: 10px;
-			cursor: pointer;
-			transition: border-color 0.3s;
-
-			&:hover {
-				border-color: $gray;
+	}
+	.productImagesSection {
+		display: flex;
+		gap: 20px;
+		@media only screen and (max-width: 800px) {
+			flex-direction: column-reverse;
+		}
+		.thumbnailsContainer {
+			display: flex;
+			flex-direction: column;
+			height: 530px;
+			justify-content: space-between;
+			@media only screen and (max-width: 1440px) {
+				height: 400px;
 			}
+			@media only screen and (max-width: 1050px) {
+				height: 320px;
+			}
+			@media only screen and (max-width: 800px) {
+				flex-direction: row;
+				height: unset;
+			}
+			.thumbnailWrapper {
+				position: relative;
+				width: 150px;
+				height: 150px;
+				border: 1px solid transparent;
+				border-radius: 10px;
+				cursor: pointer;
+				transition: border-color 0.3s;
+				@media only screen and (max-width: 1440px) {
+					width: 120px;
+					height: 120px;
+				}
+				@media only screen and (max-width: 1050px) {
+					width: 90px;
+					height: 90px;
+				}
+				@media only screen and (max-width: 450px) {
+					width: 70px;
+					height: 70px;
+				}
+				&:hover {
+					border-color: $gray;
+				}
 
+				img {
+					object-fit: contain;
+				}
+			}
+		}
+
+		.mainImage {
+			position: relative;
+			width: 450px;
+			height: 530px;
+			border-radius: 10px;
+			@media only screen and (max-width: 1440px) {
+				width: 380px;
+				height: 400px;
+			}
+			@media only screen and (max-width: 1050px) {
+				width: 300px;
+				height: 320px;
+			}
+			@media only screen and (max-width: 450px) {
+				width: 280px;
+				height: 260px;
+			}
 			img {
-				object-fit: cover;
+				object-fit: contain;
 			}
 		}
 	}
+	.textDetails {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		max-width: 590px;
+		font-family: $secondary-font;
+		@media only screen and (max-width: 1440px) {
+			max-width: 460px;
+		}
+		@media only screen and (max-width: 1050px) {
+			max-width: 320px;
+		}
+		@media only screen and (max-width: 800px) {
+			max-width: 550px;
+		}
+		@media only screen and (max-width: 600px) {
+			max-width: 400px;
+		}
+		@media only screen and (max-width: 450px) {
+			max-width: 280px;
+		}
 
-	.mainImage {
-		position: relative;
-		width: 450px;
-		height: 530px; // Adjust height as needed
-		border-radius: 10px; // Rounded edges like your reference image
-		img {
-			object-fit: cover;
+		.productTitle {
+			font-family: $primary-font;
+			font-size: 40px;
+			font-weight: 600;
+			@media only screen and (max-width: 1440px) {
+				font-size: 30px;
+			}
+			@media only screen and (max-width: 1050px) {
+				font-size: 24px;
+			}
+			@media only screen and (max-width: 450px) {
+				font-size: 18px;
+			}
+		}
+
+		.ratingContainer {
+			display: flex;
+			gap: 6px;
+			align-items: center;
+			img {
+				width: 20px;
+				height: 20px;
+			}
+			.rating {
+				span {
+					color: $gray;
+				}
+			}
+		}
+		.priceContainer {
+			display: flex;
+			gap: 14px;
+			font-size: 32px;
+			@media only screen and (max-width: 1440px) {
+				font-size: 26px;
+			}
+			@media only screen and (max-width: 1050px) {
+				font-size: 20px;
+			}
+			.price {
+				font-weight: 600;
+				color: #000;
+			}
+
+			.oldPrice {
+				font-weight: 600;
+				color: #999;
+				text-decoration: line-through;
+			}
+
+			.discountPercentage {
+				color: $red;
+				font-weight: 500;
+				background-color: $red-transparent;
+				padding: 4px;
+				height: fit-content;
+				border-radius: 14px;
+				font-size: 16px;
+				@media only screen and (max-width: 1440px) {
+					font-size: 14px;
+				}
+				@media only screen and (max-width: 1050px) {
+					font-size: 12px;
+				}
+			}
+		}
+
+		.description {
+			color: $gray;
+			@media only screen and (max-width: 1050px) {
+				font-size: 14px;
+			}
+			@media only screen and (max-width: 450px) {
+				font-size: 12px;
+			}
+		}
+
+		.colorPickingArea {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			font-weight: 300;
+			color: $gray;
+			.sectionTitle {
+				@media only screen and (max-width: 1050px) {
+					font-size: 14px;
+				}
+			}
+			.colorCirclesWrapper {
+				display: flex;
+				gap: 1rem;
+
+				.colorCirle {
+					width: 38px;
+					height: 38px;
+					border-radius: 50%;
+					cursor: pointer;
+					transition: all 0.2s;
+					@media only screen and (max-width: 1050px) {
+						width: 26px;
+						height: 26px;
+					}
+					&:hover {
+						box-shadow: 0 0 10px 1px $gray;
+					}
+				}
+
+				.colorCirle:nth-child(1) {
+					background-color: #4a4a4a;
+				}
+
+				.colorCirle:nth-child(2) {
+					background-color: #2f3e46;
+				}
+
+				.colorCirle:nth-child(3) {
+					background-color: #36454f;
+				}
+			}
+		}
+
+		.sizePickingArea {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			color: $gray;
+			font-weight: 300;
+			.sectionTitle {
+				@media only screen and (max-width: 1050px) {
+					font-size: 14px;
+				}
+			}
+			.sizeWrapper {
+				display: flex;
+				gap: 16px;
+
+				.sizeLabel {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					padding: 6px;
+					border-radius: 6px;
+					cursor: pointer;
+					flex-direction: column;
+					transition: all 0.1s ease-in-out;
+					.size {
+						@media only screen and (max-width: 1050px) {
+							font-size: 14px;
+							gap: 6px;
+						}
+					}
+					&:hover {
+						background-color: $accent-color;
+						.size {
+							color: $primary-color;
+						}
+						@media only screen and (max-width: 600px) {
+							background-color: inherit;
+							.size {
+								color: inherit;
+							}
+						}
+					}
+					input[type="radio"]:after {
+						cursor: pointer;
+						width: 15px;
+						height: 15px;
+						border-radius: 15px;
+						top: -2px;
+						left: -1px;
+						position: relative;
+						background-color: $primary-color;
+						content: "";
+						display: inline-block;
+						visibility: visible;
+						border: 1px solid $accent-color;
+					}
+
+					input[type="radio"]:checked:after {
+						cursor: pointer;
+						width: 15px;
+						height: 15px;
+						border-radius: 15px;
+						top: -2px;
+						left: -1px;
+						position: relative;
+						background-color: $accent-color;
+						content: "";
+						display: inline-block;
+						visibility: visible;
+						border: 1px solid $accent-color;
+					}
+				}
+			}
+		}
+
+		.selectQuantityContainer {
+			display: flex;
+			align-items: center;
+			gap: 30px;
+			.operationBtn {
+				background-color: transparent;
+				border: none;
+				align-items: center;
+				justify-content: center;
+				height: 30px;
+				max-width: 30px;
+				width: 100%;
+				display: flex;
+				cursor: pointer;
+				border-radius: 20px;
+				transition: all 0.1s ease-in-out;
+				&:hover {
+					background-color: $gray;
+					@media only screen and (max-width: 600px) {
+						background-color: inherit;
+					}
+				}
+			}
+			span {
+				width: 50px;
+				text-align: center;
+				font-size: 18px;
+			}
+			.addButton {
+				width: 400px;
+				height: 52px;
+				background-color: $accent-color;
+				color: $primary-color;
+				border: none;
+				outline: none;
+				cursor: pointer;
+				font-size: 16px;
+				border-radius: 50px;
+				transition: all 0.1s ease-in-out;
+				@media only screen and (max-width: 1050px) {
+					font-size: 14px;
+				}
+				&:hover {
+					border: 1px solid $accent-color;
+					background-color: $primary-color;
+					color: $accent-color;
+				}
+			}
 		}
 	}
 }

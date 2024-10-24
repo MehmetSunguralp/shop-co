@@ -4,6 +4,7 @@ export type ProductDetailProps = {
 	price: number;
 	discountPercentage: number;
 	rating: number;
+	images: string[];
 	thumbnail: string;
 	description: string;
 };
