@@ -130,13 +130,13 @@
 			display: flex;
 			gap: 6px;
 			align-items: center;
-			img {
+			.starIcon {
 				width: 20px;
 				height: 20px;
 			}
 			.rating {
-				span {
-					color: $gray;
+				.rate {
+					color: $gray; /*  */
 				}
 			}
 		}
@@ -274,7 +274,7 @@
 							}
 						}
 					}
-					input[type="radio"]:after {
+					.sizeInput[type="radio"]:after {
 						cursor: pointer;
 						width: 15px;
 						height: 15px;
@@ -289,7 +289,7 @@
 						border: 1px solid $accent-color;
 					}
 
-					input[type="radio"]:checked:after {
+					.sizeInput[type="radio"]:checked:after {
 						cursor: pointer;
 						width: 15px;
 						height: 15px;
@@ -330,7 +330,7 @@
 					}
 				}
 			}
-			span {
+			.quantityDisplay {
 				width: 50px;
 				text-align: center;
 				font-size: 18px;
