@@ -31,7 +31,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ id, thumbnail, title, 
 	return (
 		<Link href={"product/" + id} className={styles.productCard} title={title} id={String(id)} prefetch={true}>
 			<div className={styles.thumbnailWrapper}>
-				<Image src={thumbnail} alt=" asd" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+				<Image src={thumbnail} alt="product-thumbnail-photo" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
 			</div>
 			<p className={styles.title}>{limitTitle(title)}</p>
 			<span className={styles.ratingContainer}>

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { fetchProducts } from "@/api/api";
 import { ProductDetailProps } from "@/types/ProductDetailProps";
@@ -20,29 +20,33 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 	};
 
 	const [product, setProduct] = useState<ProductDetailProps | null>(null);
-
 	const [selectedSize, setSelectedSize] = useState<string>("");
-
 	const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSelectedSize(event.target.value);
 	};
 
 	const [mainImage, setMainImage] = useState<string>("");
 
-	// Fetch products and find the matching product by productId
-	useEffect(() => {
-		fetchProducts().then((data) => {
-			const foundProduct = data.products.find((p: { id: string }) => p.id == productId);
+	const fetchProductData = useCallback(async () => {
+		try {
+			const data = await fetchProducts();
+			const foundProduct = data?.products.find((p: { id: number }) => p.id === Number(productId));
 			setProduct(foundProduct || null);
 			if (foundProduct) {
 				setMainImage(foundProduct.images[0]);
 			}
-		});
+		} catch (error) {
+			console.error("Error fetching product data:", error);
+		}
 	}, [productId]);
+
+	useEffect(() => {
+		fetchProductData();
+	}, [fetchProductData]);
 
 	if (!product) {
 		return (
-			<div  className={styles.loadingSpinner}>
+			<div className={styles.loadingSpinner}>
 				<ThreeDots
 					visible={true}
 					height="80"
@@ -71,7 +75,13 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 				<div className={styles.thumbnailsContainer}>
 					{product.images.map((image, index) => (
 						<div key={index} className={styles.thumbnailWrapper} onClick={() => setMainImage(image)}>
-							<Image src={image} alt={product.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+							<Image
+								src={image}
+								alt={product.title}
+								fill
+								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+								className={styles.thumbnailImage}
+							/>
 						</div>
 					))}
 				</div>
@@ -82,6 +92,7 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 						fill
 						priority
 						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+						className={styles.fullImage}
 					/>
 				</div>
 			</div>
@@ -89,10 +100,10 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 				<h1 className={styles.productTitle}>{product.title}</h1>
 				<div className={styles.ratingContainer}>
 					{starCounter.map((_, index) => (
-						<Image src={starIcon} alt="star" key={index} />
+						<Image src={starIcon} alt="star" key={index} className={styles.starIcon} />
 					))}
 					<span className={styles.rating}>
-						{Math.round(product.rating)}/<span>5</span>
+						{Math.round(product.rating)}/<span className={styles.rate}>5</span>
 					</span>
 				</div>
 				<div className={styles.priceContainer}>
@@ -118,28 +129,56 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 				<div className={styles.colorPickingArea}>
 					<p className={styles.sectionTitle}>Select Colors</p>
 					<div className={styles.colorCirclesWrapper}>
-						<span className={styles.colorCirle}></span>
-						<span className={styles.colorCirle}></span>
-						<span className={styles.colorCirle}></span>
+						<span className={styles.colorCircle}></span>
+						<span className={styles.colorCircle}></span>
+						<span className={styles.colorCircle}></span>
 					</div>
 				</div>
 				<div className={styles.sizePickingArea}>
 					<p className={styles.sectionTitle}>Choose Size</p>
 					<div className={styles.sizeWrapper}>
 						<label className={styles.sizeLabel}>
-							<input type="radio" name="size" value="Small" checked={selectedSize === "Small"} onChange={handleSizeChange} />
+							<input
+								type="radio"
+								name="size"
+								value="Small"
+								checked={selectedSize === "Small"}
+								onChange={handleSizeChange}
+								className={styles.sizeInput}
+							/>
 							<span className={styles.size}>Small</span>
 						</label>
 						<label className={styles.sizeLabel}>
-							<input type="radio" name="size" value="Medium" checked={selectedSize === "Medium"} onChange={handleSizeChange} />
+							<input
+								type="radio"
+								name="size"
+								value="Medium"
+								checked={selectedSize === "Medium"}
+								onChange={handleSizeChange}
+								className={styles.sizeInput}
+							/>
 							<span className={styles.size}>Medium</span>
 						</label>
 						<label className={styles.sizeLabel}>
-							<input type="radio" name="size" value="Large" checked={selectedSize === "Large"} onChange={handleSizeChange} />
+							<input
+								type="radio"
+								name="size"
+								value="Large"
+								checked={selectedSize === "Large"}
+								onChange={handleSizeChange}
+								className={styles.sizeInput}
+							/>
 							<span className={styles.size}>Large</span>
 						</label>
 						<label className={styles.sizeLabel}>
-							<input type="radio" name="size" value="X-Large" checked={selectedSize === "X-Large"} onChange={handleSizeChange} />
+							<input
+								type="radio"
+								name="size"
+								value="X-Large"
+								checked={selectedSize === "X-Large"}
+								onChange={handleSizeChange}
+								className={styles.sizeInput}
+							/>
 							<span className={styles.size}>X-Large</span>
 						</label>
 					</div>
@@ -149,7 +188,7 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 					<button className={styles.operationBtn} onClick={() => handleNumberOfProduct("decrement")}>
 						<Image src={minusIcon} alt="minus" />
 					</button>
-					<span>{numberOfProduct}</span>
+					<span className={styles.quantityDisplay}>{numberOfProduct}</span>
 					<button className={styles.operationBtn} onClick={() => handleNumberOfProduct("increment")}>
 						<Image src={plusIcon} alt="plus" />
 					</button>
