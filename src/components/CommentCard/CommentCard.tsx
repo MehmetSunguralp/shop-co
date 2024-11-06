@@ -5,7 +5,7 @@ import starIcon from "@/public/common/star.svg";
 import verifiedIcon from "@/public/common/verified.svg";
 import styles from "./CommentCard.module.scss";
 
-export const CommentCard: React.FC<CommentCardProps> = ({ id, reviewerName, comment, rating }) => {
+export const CommentCard: React.FC<CommentCardProps> = ({ id, reviewerName, comment, rating, style, date }) => {
 	//Count rating stars
 	let starCounter = [0];
 	for (let i = 1; i < rating; i++) {
@@ -22,14 +22,31 @@ export const CommentCard: React.FC<CommentCardProps> = ({ id, reviewerName, comm
 		}
 		return fullName;
 	}
+	//Format date
 	const formattedName = formatName(reviewerName);
+	const getDate = date ? new Date(String(date)) : undefined;
+	const formattedDate = getDate
+		? new Intl.DateTimeFormat("en-US", {
+				month: "long",
+				day: "numeric",
+				year: "numeric",
+		  }).format(getDate)
+		: undefined;
 
 	return (
-		<Link href={"/"} className={styles.commentCard}>
+		<Link
+			href={style === "home-page" ? `product/${id}` : "#"}
+			className={style === "home-page" ? styles.commentCard : styles.productPageCommentCard}
+			onClick={(e) => {
+				if (style !== "home-page") {
+					e.preventDefault(); // Prevents navigation and page jump
+				}
+			}}
+		>
 			<span className={styles.stars}>
-				{starCounter.map((num) => {
-					return <Image src={starIcon} alt="star-icon" key={num} />;
-				})}
+				{starCounter.map((num) => (
+					<Image src={starIcon} alt="star-icon" key={num} />
+				))}
 			</span>
 			<div className={styles.reviewer}>
 				<p>{formattedName}</p>
@@ -38,6 +55,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({ id, reviewerName, comm
 				</span>
 			</div>
 			<p className={styles.comment}>{comment}</p>
+			<p className={styles.date}>{date && formattedDate}</p>
 		</Link>
 	);
 };

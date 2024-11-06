@@ -48,3 +48,61 @@
 		}
 	}
 }
+
+.productPageCommentCard * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.productPageCommentCard {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	width: 600px;
+	height: 200px;
+	border: 2px solid $secondary-color;
+	border-radius: 20px;
+	padding: 20px;
+	transition: background-color 0.2s ease-in-out;
+	@media only screen and (max-width: 1050px) {
+		height: 180px;
+	}
+	&:hover {
+		background-color: $secondary-color;
+	}
+	.stars {
+		display: flex;
+		gap: 10px;
+	}
+	.reviewer {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+
+		p {
+			font-family: $secondary-font;
+			font-size: 20px;
+			font-weight: 500;
+			color: $accent-color;
+			@media only screen and (max-width: 450px) {
+				font-size: 18px;
+			}
+		}
+	}
+	.comment {
+		font-family: $secondary-font;
+		color: $gray;
+		@media only screen and (max-width: 450px) {
+			font-size: 14px;
+		}
+	}
+	.date {
+		font-family: $secondary-font;
+		color: $gray;
+		font-weight: 600;
+		@media only screen and (max-width: 450px) {
+			font-size: 14px;
+		}
+	}
+}

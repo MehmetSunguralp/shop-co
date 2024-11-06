@@ -1,3 +1,4 @@
+import { CommentCardProps } from "@/types/CommentCardProps";
 export type ProductDetailProps = {
 	id: number;
 	title: string;
@@ -7,4 +8,5 @@ export type ProductDetailProps = {
 	images: string[];
 	thumbnail: string;
 	description: string;
+	reviews: CommentCardProps[];
 };

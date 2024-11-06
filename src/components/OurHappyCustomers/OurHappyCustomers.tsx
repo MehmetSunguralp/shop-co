@@ -62,6 +62,7 @@ export const OurHappyCustomers = () => {
 	// Sort best reviews
 	const bestReviews = products.map((product: any) => {
 		return {
+			id: product.id,
 			title: product.title,
 			bestReview: product.reviews.sort((a: any, b: any) => b.rating - a.rating)[0],
 		};
@@ -97,6 +98,8 @@ export const OurHappyCustomers = () => {
 								rating={product.bestReview.rating}
 								reviewerName={product.bestReview.reviewerName}
 								comment={product.bestReview.comment}
+								style="home-page"
+								date={null}
 							/>
 						</SwiperSlide>
 					))}
