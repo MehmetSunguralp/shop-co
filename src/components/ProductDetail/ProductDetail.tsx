@@ -7,10 +7,12 @@ import { ThreeDots } from "react-loader-spinner";
 import styles from "./ProductDetail.module.scss";
 import starIcon from "@/public/common/star.svg";
 import plusIcon from "@/public/common/plus.svg";
+import downArrow from "@/public/common/down-arrow.svg";
 import minusIcon from "@/public/common/minus.svg";
 import { CommentCard } from "../CommentCard/CommentCard";
 
 export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) => {
+	const [sortOption, setSortOption] = useState<"latest" | "oldest" | "highToLow" | "lowToHigh">("latest");
 	const [numberOfProduct, setNumberOfProduct] = useState<number>(1);
 	const handleNumberOfProduct = (action: string) => {
 		if (action === "increment") {
@@ -75,6 +77,27 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 	const discount = Math.floor(product.discountPercentage);
 	const newPrice = discount !== 0 ? product.price - (product.price * discount) / 100 : product.price;
 	const visibility = discount === 0 ? "none" : "block";
+
+	// Sort comments
+
+	const sortedComments = [...product.reviews].sort((a, b) => {
+		const dateA = a.date ? new Date(a.date).getTime() : 0;
+		const dateB = b.date ? new Date(b.date).getTime() : 0;
+
+		if (sortOption === "latest") {
+			return dateB - dateA;
+		}
+		if (sortOption === "oldest") {
+			return dateA - dateB;
+		}
+		if (sortOption === "highToLow") {
+			return b.rating - a.rating;
+		}
+		if (sortOption === "lowToHigh") {
+			return a.rating - b.rating;
+		}
+		return 0;
+	});
 
 	return (
 		<div className={styles.productDetail}>
@@ -209,11 +232,24 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 					<h3 className={styles.allReviews}>
 						All Reviews <span className={styles.counter}>({counter})</span>
 					</h3>
-
-					<button className={styles.writeReviewBtn}>Write a Review</button>
+					<div className={styles.sortAndWriteContainer}>
+						<div className={styles.dropDownWrapper}>
+							<select
+								onChange={(e) => setSortOption(e.target.value as "latest" | "oldest" | "highToLow" | "lowToHigh")}
+								className={styles.sortSelect}
+							>
+								<option value="latest">Latest</option>
+								<option value="oldest">Oldest</option>
+								<option value="highToLow">Highest Rating</option>
+								<option value="lowToHigh">Lowest Rating</option>
+							</select>
+							<Image src={downArrow} alt="sort-comments" className={styles.downArrow} />
+						</div>
+						<button className={styles.writeReviewBtn}>Write a Review</button>
+					</div>
 				</div>
 				<div className={styles.commentCardsWrapper}>
-					{product.reviews.map((comment, index) => {
+					{sortedComments.map((comment, index) => {
 						return (
 							<CommentCard
 								key={index}

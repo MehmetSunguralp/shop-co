@@ -346,6 +346,7 @@
 					color: $primary-color;
 					border: none;
 					outline: none;
+					font-family: $secondary-font;
 					cursor: pointer;
 					font-size: 16px;
 					border-radius: 50px;
@@ -384,24 +385,53 @@
 					color: $gray;
 				}
 			}
-			.writeReviewBtn {
-				width: 200px;
-				height: 52px;
-				background-color: $accent-color;
-				color: $primary-color;
-				border: none;
-				outline: none;
-				cursor: pointer;
-				font-size: 16px;
-				border-radius: 50px;
-				transition: all 0.1s ease-in-out;
-				@media only screen and (max-width: 1050px) {
-					font-size: 14px;
+			.sortAndWriteContainer {
+				display: flex;
+				gap: 10px;
+				.dropDownWrapper {
+					position: relative;
+					.sortSelect {
+						border: none;
+						font-size: 16px;
+						font-family: $secondary-font;
+						background-color: $secondary-color;
+						border-radius: 50px;
+						cursor: pointer;
+						outline: none;
+						appearance: none;
+						width: 160px;
+						display: flex;
+						align-items: center;
+						padding-left: 20px;
+						height: 52px;
+					}
+					.downArrow {
+						z-index: 2;
+						top: 24px;
+						right: 14px;
+						position: absolute;
+					}
 				}
-				&:hover {
-					border: 1px solid $accent-color;
-					background-color: $primary-color;
-					color: $accent-color;
+				.writeReviewBtn {
+					width: 200px;
+					height: 52px;
+					background-color: $accent-color;
+					color: $primary-color;
+					border: none;
+					outline: none;
+					cursor: pointer;
+					font-family: $secondary-font;
+					font-size: 16px;
+					border-radius: 50px;
+					transition: all 0.1s ease-in-out;
+					@media only screen and (max-width: 1050px) {
+						font-size: 14px;
+					}
+					&:hover {
+						border: 1px solid $accent-color;
+						background-color: $primary-color;
+						color: $accent-color;
+					}
 				}
 			}
 		}
