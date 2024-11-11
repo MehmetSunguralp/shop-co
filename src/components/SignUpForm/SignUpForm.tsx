@@ -1,16 +1,32 @@
 "use client";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useFormik } from "formik";
+import axios from "axios";
+import { SignUpFormSchema } from "@/schemas/SignUpFormSchema";
 import styles from "./SignUpForm.module.scss";
 import authImg from "@/public/Hero/hero3.jpg";
 import lock from "@/public/common/lock.svg";
 import mail from "@/public/common/mail.svg";
 import user from "@/public/common/user.svg";
-import { SignUpFormSchema } from "@/schemas/SignUpFormSchema";
 
 export const SignUpForm = () => {
+	const router = useRouter();
 	const submit = (values: any, actions: any) => {
-		actions.resetForm();
+		//TODO: Update the types and use the real endpoint
+		axios
+			.post("https://dummyjson.com/users/add", {
+				username: values.username,
+				email: values.email,
+				password: values.password,
+			})
+			.then((response) => {
+				console.log(response);
+				router.push("/login");
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	};
 	const { values, errors, handleChange, handleSubmit } = useFormik({
 		initialValues: {
