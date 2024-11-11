@@ -1,15 +1,20 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-import { fetchProducts } from "@/api/api";
 import { ProductDetailProps } from "@/types/ProductDetailProps";
 import { ThreeDots } from "react-loader-spinner";
 import styles from "./ProductDetail.module.scss";
 import starIcon from "@/public/common/star.svg";
 import plusIcon from "@/public/common/plus.svg";
 import minusIcon from "@/public/common/minus.svg";
+import { ProductsProps } from "@/types/ProductsProps";
 
-export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) => {
+interface ProductDetailsProps {
+	allProducts: ProductsProps;
+	productId: string;
+}
+
+export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allProducts }) => {
 	const [numberOfProduct, setNumberOfProduct] = useState<number>(1);
 	const handleNumberOfProduct = (action: string) => {
 		if (action === "increment") {
@@ -27,10 +32,9 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 
 	const [mainImage, setMainImage] = useState<string>("");
 
-	const fetchProductData = useCallback(async () => {
+	const findProductById = useCallback(async () => {
 		try {
-			const data = await fetchProducts();
-			const foundProduct = data?.products.find((p: { id: number }) => p.id === Number(productId));
+			const foundProduct = allProducts.products.find((p: { id: number }) => p.id === Number(productId));
 			setProduct(foundProduct || null);
 			if (foundProduct) {
 				setMainImage(foundProduct.images[0]);
@@ -41,8 +45,8 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 	}, [productId]);
 
 	useEffect(() => {
-		fetchProductData();
-	}, [fetchProductData]);
+		findProductById();
+	}, [findProductById]);
 
 	if (!product) {
 		return (
