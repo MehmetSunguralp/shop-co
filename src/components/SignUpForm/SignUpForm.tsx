@@ -47,7 +47,12 @@ export const SignUpForm = () => {
 			<form method="post" className={styles.form} onSubmit={handleSubmit}>
 				<h1 className={styles.title}>SIGN Up FOR A SHOP.CO ACCOUNT</h1>
 				<label htmlFor="username" className={styles.inputLabel}>
-					<Image src={user} alt="lock" className={styles.inputIcons} />
+					<Image
+						src={user}
+						alt="lock"
+						className={styles.inputIcons}
+						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					/>
 					<input
 						type="text"
 						id="username"
