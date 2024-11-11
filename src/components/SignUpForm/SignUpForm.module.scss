@@ -51,9 +51,14 @@
 			.inputIcons {
 				position: absolute;
 				left: 16px;
-				bottom: 8px;
+				top: 8px;
 				width: 32px;
 				height: 32px;
+			}
+			.error {
+				color: red;
+				font-size: 14px;
+				font-weight: 500;
 			}
 		}
 		.submitBtn {

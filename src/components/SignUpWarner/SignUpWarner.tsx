@@ -12,7 +12,7 @@ export const SignUpWarner: React.FC = () => {
 		<div className={styles.signUpWarner} style={{ display: warnerVisibility }}>
 			<p className={styles.warningText}>
 				Sign up and get 20% off to your first order.
-				<Link href={"/"} className={styles.signUpLink}>
+				<Link href={"/signup"} className={styles.signUpLink}>
 					Sign Up Now
 				</Link>
 			</p>
