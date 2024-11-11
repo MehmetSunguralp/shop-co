@@ -1,20 +1,22 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { fetchProducts } from "@/api/api";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { ThreeDots } from "react-loader-spinner";
 import rightArrow from "@/public/common/right-arrow.svg";
 import leftArrow from "@/public/common/left-arrow.svg";
 import styles from "./OurHappyCustomers.module.scss";
 import { CommentCard } from "../CommentCard/CommentCard";
 
-export const OurHappyCustomers = () => {
-	const [products, setProducts] = useState<object[]>([]);
-	const [loading, setLoading] = useState<boolean>(true);
+import { ProductsProps } from "@/types/ProductsProps";
+
+interface OurHappyCustomersProps {
+	allProducts: ProductsProps;
+}
+
+export const OurHappyCustomers: React.FC<OurHappyCustomersProps> = ({ allProducts }) => {
 	const navigationNextRef = useRef<HTMLButtonElement>(null);
 	const navigationPrevRef = useRef<HTMLButtonElement>(null);
 	const [slidesPerView, setSlidesPerView] = useState<number>(3);
@@ -33,14 +35,7 @@ export const OurHappyCustomers = () => {
 		}
 	};
 
-	// useEffect to handle client-side code
 	useEffect(() => {
-		// Fetch the products
-		fetchProducts().then((data) => {
-			setProducts(data.products);
-			setLoading(false);
-		});
-
 		// Handle slide views when window is resized
 		handleSlidesPerView();
 		if (typeof window !== "undefined") {
@@ -51,16 +46,8 @@ export const OurHappyCustomers = () => {
 		}
 	}, []);
 
-	if (loading) {
-		return (
-			<div className={styles.loader}>
-				<ThreeDots color="#000" height={80} width={80} />
-			</div>
-		);
-	}
-
 	// Sort best reviews
-	const bestReviews = products.map((product: any) => {
+	const bestReviews = allProducts.products.map((product: any) => {
 		return {
 			title: product.title,
 			bestReview: product.reviews.sort((a: any, b: any) => b.rating - a.rating)[0],
