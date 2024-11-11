@@ -11,9 +11,10 @@ import rightArrow from "@/public/common/right-arrow.svg";
 import leftArrow from "@/public/common/left-arrow.svg";
 import styles from "./OurHappyCustomers.module.scss";
 import { CommentCard } from "../CommentCard/CommentCard";
+import { ProductDetailProps } from "@/types/ProductDetailProps";
 
 export const OurHappyCustomers = () => {
-	const [products, setProducts] = useState<object[]>([]);
+	const [products, setProducts] = useState<ProductDetailProps[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const navigationNextRef = useRef<HTMLButtonElement>(null);
 	const navigationPrevRef = useRef<HTMLButtonElement>(null);
@@ -60,11 +61,11 @@ export const OurHappyCustomers = () => {
 	}
 
 	// Sort best reviews
-	const bestReviews = products.map((product: any) => {
+	const bestReviews = products.map((product) => {
 		return {
 			id: product.id,
 			title: product.title,
-			bestReview: product.reviews.sort((a: any, b: any) => b.rating - a.rating)[0],
+			bestReview: product.reviews.sort((a, b) => b.rating - a.rating)[0],
 		};
 	});
 
@@ -91,7 +92,7 @@ export const OurHappyCustomers = () => {
 						nextEl: navigationNextRef.current,
 					}}
 				>
-					{bestReviews.map((product: any, index: number) => (
+					{bestReviews.map((product, index) => (
 						<SwiperSlide key={index}>
 							<CommentCard
 								id={product.id}
