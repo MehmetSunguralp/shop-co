@@ -42,17 +42,12 @@ export const SignUpForm = () => {
 	return (
 		<div className={styles.signUpForm}>
 			<div className={styles.imgWrapper}>
-				<Image src={authImg} alt="fashion-couple" fill />
+				<Image src={authImg} alt="fashion-couple" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
 			</div>
 			<form method="post" className={styles.form} onSubmit={handleSubmit}>
 				<h1 className={styles.title}>SIGN Up FOR A SHOP.CO ACCOUNT</h1>
 				<label htmlFor="username" className={styles.inputLabel}>
-					<Image
-						src={user}
-						alt="lock"
-						className={styles.inputIcons}
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-					/>
+					<Image src={user} alt="lock" className={styles.inputIcons} />
 					<input
 						type="text"
 						id="username"
