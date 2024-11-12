@@ -1,8 +1,9 @@
+import axios from "axios";
+
 export const fetchProducts = async () => {
 	try {
-		const data = await fetch("https://dummyjson.com/products");
-		const response = await data.json();
-		return response;
+		const products = await axios.get("https://dummyjson.com/products").then((response) => response);
+		return products.data;
 	} catch (error) {
 		console.error(error);
 	}
