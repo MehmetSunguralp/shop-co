@@ -63,7 +63,7 @@
 	height: 200px;
 	border: 2px solid $secondary-color;
 	border-radius: 20px;
-	padding: 20px;
+	padding: 20px !important;
 	transition: background-color 0.2s ease-in-out;
 	@media only screen and (max-width: 1440px) {
 		width: 400px;
@@ -82,7 +82,7 @@
 	@media only screen and (max-width: 450px) {
 		width: 280px;
 		height: 140px;
-		padding: 12px;
+		padding: 12px !important;
 	}
 	&:hover {
 		background-color: $secondary-color;

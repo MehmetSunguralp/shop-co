@@ -1,17 +1,22 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
-import { fetchProducts } from "@/api/api";
 import { ProductDetailProps } from "@/types/ProductDetailProps";
+import { CommentCard } from "../CommentCard/CommentCard";
+import { ProductsProps } from "@/types/ProductsProps";
 import { ThreeDots } from "react-loader-spinner";
-import styles from "./ProductDetail.module.scss";
 import starIcon from "@/public/common/star.svg";
 import plusIcon from "@/public/common/plus.svg";
-import downArrow from "@/public/common/down-arrow.svg";
 import minusIcon from "@/public/common/minus.svg";
-import { CommentCard } from "../CommentCard/CommentCard";
+import downArrow from "@/public/common/down-arrow.svg";
+import styles from "./ProductDetail.module.scss";
 
-export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) => {
+interface ProductDetailsProps {
+	allProducts: ProductsProps;
+	productId: string;
+}
+
+export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allProducts }) => {
 	const [sortOption, setSortOption] = useState<"latest" | "oldest" | "highToLow" | "lowToHigh">("latest");
 	const [numberOfProduct, setNumberOfProduct] = useState<number>(1);
 	const handleNumberOfProduct = (action: string) => {
@@ -30,10 +35,9 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 
 	const [mainImage, setMainImage] = useState<string>("");
 
-	const fetchProductData = useCallback(async () => {
+	const findProductById = useCallback(async () => {
 		try {
-			const data = await fetchProducts();
-			const foundProduct = data?.products.find((p: { id: number }) => p.id === Number(productId));
+			const foundProduct = allProducts.products.find((p: { id: number }) => p.id === Number(productId));
 			setProduct(foundProduct || null);
 			if (foundProduct) {
 				setMainImage(foundProduct.images[0]);
@@ -44,15 +48,14 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 	}, [productId]);
 
 	useEffect(() => {
-		fetchProductData();
-	}, [fetchProductData]);
+		findProductById();
+	}, [findProductById]);
 
 	//Review counter
 	let counter: number = 0;
 	product?.reviews.forEach(() => {
 		counter += 1;
 	});
-
 	if (!product) {
 		return (
 			<div className={styles.loadingSpinner}>
@@ -79,7 +82,6 @@ export const ProductDetail: React.FC<{ productId: string }> = ({ productId }) =>
 	const visibility = discount === 0 ? "none" : "block";
 
 	// Sort comments
-
 	const sortedComments = [...product.reviews].sort((a, b) => {
 		const dateA = a.date ? new Date(a.date).getTime() : 0;
 		const dateB = b.date ? new Date(b.date).getTime() : 0;

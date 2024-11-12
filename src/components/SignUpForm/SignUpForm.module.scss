@@ -1,0 +1,101 @@
+@use "../../app/variables" as *;
+
+.signUpForm * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.signUpForm {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	.imgWrapper {
+		width: 650px;
+		height: 650px;
+		position: relative;
+		img {
+			border-radius: 20px;
+		}
+	}
+	.form {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 80ch;
+		gap: 14px;
+		.title {
+			font-family: $primary-font;
+			font-size: 64px;
+			line-height: 64px;
+			text-align: center;
+		}
+		.inputLabel {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			font-family: $secondary-font;
+			position: relative;
+			.inputArea {
+				width: 460px;
+				height: 46px;
+				border-radius: 100px;
+				border: none;
+				outline: none;
+				background-color: $secondary-color;
+				font-family: $secondary-font;
+				text-indent: 60px;
+				font-size: 16px;
+			}
+			.inputIcons {
+				position: absolute;
+				left: 16px;
+				top: 8px;
+				width: 32px;
+				height: 32px;
+			}
+			.error {
+				color: red;
+				font-size: 14px;
+				font-weight: 500;
+			}
+		}
+		.submitBtn {
+			width: 460px;
+			height: 46px;
+			border-radius: 100px;
+			border: none;
+			outline: none;
+			background-color: $accent-color;
+			color: $primary-color;
+			font-family: $secondary-font;
+			font-size: 16px;
+			transition: all 0.1s ease-in-out;
+			&:hover {
+				background-color: $primary-color;
+				color: $accent-color;
+				cursor: pointer;
+				border: 1px solid $accent-color;
+			}
+		}
+		.directToLoginBtn {
+			width: 460px;
+			height: 46px;
+			border-radius: 100px;
+			border: 1px solid $accent-color;
+			outline: none;
+			background-color: $primary-color;
+			color: $accent-color;
+			font-family: $secondary-font;
+			font-size: 16px;
+			transition: all 0.1s ease-in-out;
+			&:hover {
+				background-color: $accent-color;
+				color: $primary-color;
+				cursor: pointer;
+				border: 1px solid $accent-color;
+			}
+		}
+	}
+}
