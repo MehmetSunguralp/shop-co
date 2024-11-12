@@ -56,7 +56,7 @@
 				height: 32px;
 			}
 			.error {
-				color: red;
+				color: $red;
 				font-size: 14px;
 				font-weight: 500;
 			}
@@ -77,6 +77,17 @@
 				color: $accent-color;
 				cursor: pointer;
 				border: 1px solid $accent-color;
+			}
+		}
+
+		.submitBtn:disabled {
+			background-color: $gray;
+			opacity: 0.6;
+			&:hover {
+				background-color: $gray;
+				color: $primary-color;
+				cursor: not-allowed;
+				border: none;
 			}
 		}
 		.directToLoginBtn {

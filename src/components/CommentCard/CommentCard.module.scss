@@ -21,6 +21,11 @@
 	}
 	&:hover {
 		background-color: $secondary-color;
+		cursor: grab;
+	}
+	&:active {
+		background-color: $secondary-color;
+		cursor: grabbing;
 	}
 	.stars {
 		display: flex;

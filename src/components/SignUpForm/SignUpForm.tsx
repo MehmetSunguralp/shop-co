@@ -1,9 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { useFormik } from "formik";
+import { useFormik, FormikHelpers } from "formik";
 import axios from "axios";
 import { SignUpFormSchema } from "@/schemas/SignUpFormSchema";
+import { signUpCredentialsProps } from "@/types/SignUpCredentials";
 import styles from "./SignUpForm.module.scss";
 import authImg from "@/public/Hero/hero3.jpg";
 import lock from "@/public/common/lock.svg";
@@ -12,7 +13,7 @@ import user from "@/public/common/user.svg";
 
 export const SignUpForm = () => {
 	const router = useRouter();
-	const submit = (values: any, actions: any) => {
+	const submit = (values: signUpCredentialsProps, actions: FormikHelpers<signUpCredentialsProps>) => {
 		//TODO: Update the types and use the real endpoint
 		axios
 			.post("https://dummyjson.com/users/add", {
@@ -22,13 +23,15 @@ export const SignUpForm = () => {
 			})
 			.then((response) => {
 				console.log(response);
+				actions.setSubmitting(false);
 				router.push("/login");
 			})
 			.catch((error) => {
 				console.log(error);
+				actions.setSubmitting(false);
 			});
 	};
-	const { values, errors, handleChange, handleSubmit } = useFormik({
+	const { values, errors, handleChange, handleSubmit, isValid, isSubmitting } = useFormik({
 		initialValues: {
 			username: "",
 			email: "",
@@ -38,6 +41,7 @@ export const SignUpForm = () => {
 		validationSchema: SignUpFormSchema,
 		onSubmit: submit,
 	});
+
 
 	return (
 		<div className={styles.signUpForm}>
@@ -102,7 +106,7 @@ export const SignUpForm = () => {
 					/>
 					{errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword}</p>}
 				</label>
-				<input type="submit" value="Sign Up" className={styles.submitBtn} />
+				<input type="submit" value="Sign Up" className={styles.submitBtn} disabled={!isValid || isSubmitting} />
 				<button type="submit" className={styles.directToLoginBtn}>
 					Already have an account? Click here to Log In
 				</button>
