@@ -1,5 +1,3 @@
-// app/page.tsx or wherever your Home component is located
-
 import { Hero } from "@/components/Hero/Hero";
 import { BrandBanner } from "@/components/BrandBanner/BrandBanner";
 import { TopSelling } from "@/components/TopSelling/TopSelling";

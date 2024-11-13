@@ -9,7 +9,7 @@ import { RiUserLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import mainLogo from "@/public/common/main-logo.svg";
-import styles from "./Header.module.scss";
+import styles from "@/components/Header/Header.module.scss";
 
 export const Header: React.FC = () => {
 	const mobileSearchRef = useRef<HTMLInputElement>(null);

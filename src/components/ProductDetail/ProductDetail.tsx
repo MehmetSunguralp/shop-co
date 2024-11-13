@@ -2,14 +2,14 @@
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { ProductDetailProps } from "@/types/ProductDetailProps";
-import { CommentCard } from "../CommentCard/CommentCard";
+import { CommentCard } from "@/components/CommentCard/CommentCard";
 import { ProductsProps } from "@/types/ProductsProps";
 import { ThreeDots } from "react-loader-spinner";
 import starIcon from "@/public/common/star.svg";
 import plusIcon from "@/public/common/plus.svg";
 import minusIcon from "@/public/common/minus.svg";
 import downArrow from "@/public/common/down-arrow.svg";
-import styles from "./ProductDetail.module.scss";
+import styles from "@/components//ProductDetail/ProductDetail.module.scss";
 
 interface ProductDetailsProps {
 	allProducts: ProductsProps;

@@ -1,5 +1,5 @@
-import { ProductCard } from "../ProductCard/ProductCard";
-import styles from "./TopSelling.module.scss";
+import { ProductCard } from "@/components/ProductCard/ProductCard";
+import styles from "@/components/TopSelling/TopSelling.module.scss";
 import { ProductsProps } from "@/types/ProductsProps";
 
 interface TopSellingProps {

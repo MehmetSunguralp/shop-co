@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductCardProps } from "@/types/ProductCardProps";
 import starIcon from "@/public/common/star.svg";
-import styles from "./ProductCard.module.scss";
+import styles from "@/components//ProductCard/ProductCard.module.scss";
 
 export const ProductCard: React.FC<ProductCardProps> = ({ id, thumbnail, title, rating, price, discountPercentage }) => {
 	//Count rating stars

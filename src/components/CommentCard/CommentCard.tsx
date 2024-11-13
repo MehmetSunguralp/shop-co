@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import moment from "moment";
 import { CommentCardProps } from "@/types/CommentCardProps";
 import starIcon from "@/public/common/star.svg";
 import verifiedIcon from "@/public/common/verified.svg";
-import styles from "./CommentCard.module.scss";
+import styles from "@/components/CommentCard/CommentCard.module.scss";
 
 export const CommentCard: React.FC<CommentCardProps> = ({ id, reviewerName, comment, rating, style, date }) => {
 	//Count rating stars
@@ -24,14 +25,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({ id, reviewerName, comm
 	}
 	//Format date
 	const formattedName = formatName(reviewerName);
-	const getDate = date ? new Date(String(date)) : undefined;
-	const formattedDate = getDate
-		? new Intl.DateTimeFormat("en-US", {
-				month: "long",
-				day: "numeric",
-				year: "numeric",
-		  }).format(getDate)
-		: undefined;
+	const formattedDate = moment(date).format('MMMM D, YYYY');
 
 	return (
 		<Link

@@ -7,8 +7,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import rightArrow from "@/public/common/right-arrow.svg";
 import leftArrow from "@/public/common/left-arrow.svg";
-import styles from "./OurHappyCustomers.module.scss";
-import { CommentCard } from "../CommentCard/CommentCard";
+import styles from "@/components/OurHappyCustomers/OurHappyCustomers.module.scss";
+import { CommentCard } from "@/components/CommentCard/CommentCard";
 
 import { ProductsProps } from "@/types/ProductsProps";
 

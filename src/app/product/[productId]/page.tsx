@@ -5,9 +5,5 @@ import { ProductsProps } from "@/types/ProductsProps";
 export default async function ProductPage({ params }: { params: { productId: string } }) {
 	const { productId } = params;
 	const products: ProductsProps = await fetchProducts();
-	return (
-		<>
-			<ProductDetail productId={productId} allProducts={products} />
-		</>
-	);
+	return <ProductDetail productId={productId} allProducts={products} />;
 }

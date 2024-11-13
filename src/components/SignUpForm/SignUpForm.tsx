@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useFormik } from "formik";
 import axios from "axios";
 import { SignUpFormSchema } from "@/schemas/SignUpFormSchema";
-import styles from "./SignUpForm.module.scss";
+import styles from "@/components/SignUpForm/SignUpForm.module.scss";
 import authImg from "@/public/Hero/hero3.jpg";
 import lock from "@/public/common/lock.svg";
 import mail from "@/public/common/mail.svg";

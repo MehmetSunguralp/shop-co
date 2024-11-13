@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { IoIosClose } from "react-icons/io";
-import styles from "./SignUpWarner.module.scss";
+import styles from "@/components/SignUpWarner/SignUpWarner.module.scss";
 import Link from "next/link";
 
 export const SignUpWarner: React.FC = () => {
