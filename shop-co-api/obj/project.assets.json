@@ -1344,11 +1344,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\shop-co-api\\shop-co-api.csproj",
+      "projectUniqueName": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\shop-co-api\\shop-co-api.csproj",
       "projectName": "shop-co-api",
-      "projectPath": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\shop-co-api\\shop-co-api.csproj",
+      "projectPath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\shop-co-api\\shop-co-api.csproj",
       "packagesPath": "C:\\Users\\hcakmak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\shop-co-api\\obj\\",
+      "outputPath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\shop-co-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hcakmak\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1366,8 +1366,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj": {
-              "projectPath": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj"
+            "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj": {
+              "projectPath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj"
             }
           }
         }

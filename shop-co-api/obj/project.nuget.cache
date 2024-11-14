@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O+QQkUwiZ6s=",
+  "dgSpecHash": "kZbNPWbYxpw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\shop-co-api\\shop-co-api.csproj",
+  "projectFilePath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\shop-co-api\\shop-co-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hcakmak\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\hcakmak\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

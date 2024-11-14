@@ -802,11 +802,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj",
+      "projectUniqueName": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj",
       "projectName": "UserServiceRepository",
-      "projectPath": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj",
+      "projectPath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\UserServiceRepository\\UserServiceRepository.csproj",
       "packagesPath": "C:\\Users\\hcakmak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\hcakmak\\source\\repos\\MehmetSunguralp\\shop-co\\UserServiceRepository\\obj\\",
+      "outputPath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\UserServiceRepository\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hcakmak\\AppData\\Roaming\\NuGet\\NuGet.Config",
