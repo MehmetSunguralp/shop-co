@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj": {}
+    "c:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj": {
+    "c:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj",
+        "projectUniqueName": "c:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj",
+        "projectPath": "c:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\hcakmak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\obj\\",
+        "outputPath": "c:\\Users\\hcakmak\\Documents\\GitHub\\shop-co\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hcakmak\\AppData\\Roaming\\NuGet\\NuGet.Config",
