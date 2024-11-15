@@ -23,44 +23,56 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		max-width: 80ch;
-		gap: 14px;
+		max-width: 90ch;
+		gap: 40px;
 		.title {
 			font-family: $primary-font;
 			font-size: 64px;
 			line-height: 64px;
 			text-align: center;
 		}
-		.inputLabel {
+		.inputWrapper {
 			display: flex;
 			flex-direction: column;
-			gap: 10px;
-			font-family: $secondary-font;
-			position: relative;
-			.inputArea {
-				width: 460px;
-				height: 46px;
-				border-radius: 100px;
-				border: none;
-				outline: none;
-				background-color: $secondary-color;
+			gap: 30px;
+			.inputLabel {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
 				font-family: $secondary-font;
-				text-indent: 60px;
-				font-size: 16px;
-			}
-			.inputIcons {
-				position: absolute;
-				left: 16px;
-				top: 8px;
-				width: 32px;
-				height: 32px;
-			}
-			.error {
-				color: $red;
-				font-size: 14px;
-				font-weight: 500;
+				position: relative;
+				.inputArea {
+					width: 460px;
+					height: 46px;
+					border-radius: 100px;
+					border: none;
+					outline: none;
+					background-color: $secondary-color;
+					font-family: $secondary-font;
+					text-indent: 60px;
+					font-size: 16px;
+					transition: all 0.2s ease-in-out;
+					&:focus {
+						box-shadow: 0 0 10px 1px $secondary-color;
+					}
+				}
+				.inputIcons {
+					position: absolute;
+					left: 16px;
+					top: 8px;
+					width: 32px;
+					height: 32px;
+				}
+				.error {
+					position: absolute;
+					left: 20px;
+					bottom: -22px;
+					color: $red;
+					font-size: 16px;
+				}
 			}
 		}
+
 		.submitBtn {
 			width: 460px;
 			height: 46px;
