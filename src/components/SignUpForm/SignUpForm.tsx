@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useFormik, FormikHelpers } from "formik";
 import axios from "axios";
@@ -14,6 +14,7 @@ import mail from "@/public/common/mail.svg";
 import user from "@/public/common/user.svg";
 
 export const SignUpForm = () => {
+	const router = useRouter();
 	const [isCodeVerification, setIsCodeVerification] = useState(false);
 	const submit = (values: signUpCredentialsProps, actions: FormikHelpers<signUpCredentialsProps>) => {
 		//TODO: Use the real endpoint
@@ -114,7 +115,7 @@ export const SignUpForm = () => {
 					{errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword}</p>}
 				</label>
 				<input type="submit" value="Sign Up" className={styles.submitBtn} disabled={!isValid || isSubmitting} />
-				<button type="submit" className={styles.directToLoginBtn}>
+				<button className={styles.directToLoginBtn} onClick={() => router.push("/login")}>
 					Already have an account? Click here to Log In
 				</button>
 			</form>
