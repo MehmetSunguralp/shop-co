@@ -1,0 +1,82 @@
+@use "../../app/variables" as *;
+
+.codeVerificationForm * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.codeVerificationForm {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: $secondary-font;
+	gap: 40px;
+	padding-block: 50px;
+	.label {
+		font-size: 28px;
+		.email {
+			font-weight: 600;
+			text-decoration: underline;
+		}
+	}
+	.inputWrapper {
+		display: flex;
+		gap: 20px;
+		.codeInput {
+			box-sizing: border-box;
+			font-family: $secondary-font;
+			background-color: $secondary-color;
+			border: none;
+			outline: none;
+			border-radius: 100px;
+			font-size: 48px;
+			padding: 20px;
+			width: 100px;
+			height: 100px;
+			text-align: center;
+			font-weight: 800;
+			&:focus {
+				border: 2px solid $accent-color;
+			}
+		}
+	}
+	.error {
+		color: $red;
+		font-weight: 500;
+		font-size: 18px;
+	}
+	.submitButton {
+		width: 350px;
+		height: 50px;
+		border-radius: 50px;
+		border: none;
+		color: $primary-color;
+		outline: none;
+		background-color: $accent-color;
+		font-family: $secondary-font;
+		font-size: 16px;
+		transition: all 0.1s ease-in-out;
+		@media only screen and (max-width: 1440px) {
+			width: 250px;
+			height: 40px;
+			font-size: 14px;
+		}
+		&:hover {
+			background-color: $primary-color;
+			color: $accent-color;
+			cursor: pointer;
+			border: 1px solid $accent-color;
+		}
+	}
+    .submitButton:disabled {
+        background-color: $gray;
+        opacity: 0.6;
+        &:hover {
+            background-color: $gray;
+            color: $primary-color;
+            cursor: not-allowed;
+            border: none;
+        }
+    }
+}

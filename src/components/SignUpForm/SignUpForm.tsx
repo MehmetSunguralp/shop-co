@@ -1,10 +1,12 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
+
 import Image from "next/image";
 import { useFormik, FormikHelpers } from "formik";
 import axios from "axios";
 import { SignUpFormSchema } from "@/schemas/SignUpFormSchema";
 import { signUpCredentialsProps } from "@/types/SignUpCredentials";
+import { CodeVerification } from "../CodeVerification/CodeVerification";
 import styles from "./SignUpForm.module.scss";
 import authImg from "@/public/Hero/hero3.jpg";
 import lock from "@/public/common/lock.svg";
@@ -12,9 +14,9 @@ import mail from "@/public/common/mail.svg";
 import user from "@/public/common/user.svg";
 
 export const SignUpForm = () => {
-	const router = useRouter();
+	const [isCodeVerification, setIsCodeVerification] = useState(false);
 	const submit = (values: signUpCredentialsProps, actions: FormikHelpers<signUpCredentialsProps>) => {
-		//TODO: Update the types and use the real endpoint
+		//TODO: Use the real endpoint
 		axios
 			.post("https://dummyjson.com/users/add", {
 				username: values.username,
@@ -24,7 +26,7 @@ export const SignUpForm = () => {
 			.then((response) => {
 				console.log(response);
 				actions.setSubmitting(false);
-				router.push("/login");
+				setIsCodeVerification(true);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -42,11 +44,16 @@ export const SignUpForm = () => {
 		onSubmit: submit,
 	});
 
-
-	return (
+	return !isCodeVerification ? (
 		<div className={styles.signUpForm}>
 			<div className={styles.imgWrapper}>
-				<Image src={authImg} alt="fashion-couple" fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+				<Image
+					src={authImg}
+					alt="fashion-couple"
+					fill
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					priority
+				/>
 			</div>
 			<form method="post" className={styles.form} onSubmit={handleSubmit}>
 				<h1 className={styles.title}>SIGN Up FOR A SHOP.CO ACCOUNT</h1>
@@ -112,5 +119,7 @@ export const SignUpForm = () => {
 				</button>
 			</form>
 		</div>
+	) : (
+		<CodeVerification email={values.email} />
 	);
 };
