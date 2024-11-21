@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./BrandBanner.module.scss";
+import styles from "@/components/BrandBanner/BrandBanner.module.scss";
 import versaceLogo from "@/public/BrandBanner/versace.svg";
 import zaraLogo from "@/public/BrandBanner/zara.svg";
 import gucciLogo from "@/public/BrandBanner/gucci.svg";

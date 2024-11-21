@@ -1,8 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import styles from "./Hero.module.scss";
+import styles from "@/components/Hero/Hero.module.scss";
 import heroImage from "@/public/Hero/hero.png";
-import { fetchProducts } from "@/api/api";
 
 export const Hero: React.FC = () => {
 	return (

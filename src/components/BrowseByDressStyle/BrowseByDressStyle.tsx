@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./BrowseByDressStyle.module.scss";
+import styles from "@/components/BrowseByDressStyle/BrowseByDressStyle.module.scss";
 import casual from "@/public/BrowseByDressStyle/casual.png";
 import formal from "@/public/BrowseByDressStyle/formal.png";
 import gym from "@/public/BrowseByDressStyle/gym.png";

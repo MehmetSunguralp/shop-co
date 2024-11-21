@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./Footer.module.scss";
+import styles from "@/components/Footer/Footer.module.scss";
 import emailIcon from "@/public/common/email.svg";
 import mainLogo from "@/public/common/main-logo.svg";
 import twitter from "@/public/common/twitter.svg";
