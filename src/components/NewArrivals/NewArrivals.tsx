@@ -1,17 +1,24 @@
+"use client"
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 import { ProductCard } from "../ProductCard/ProductCard";
-import styles from "./NewArrivals.module.scss";
 import { ProductsProps } from "@/types/ProductsProps";
+import styles from "./NewArrivals.module.scss";
 
 interface NewArrivalsProps {
 	allProducts: ProductsProps;
 }
 
 export const NewArrivals: React.FC<NewArrivalsProps> = ({ allProducts }) => {
+	const { items } = useSelector((state: RootState) => state.products);
+
+	const productsToRender = items.length > 0 ? items : allProducts.products;
+
 	return (
 		<section className={styles.newArrivals}>
 			<h3 className={styles.sectionTitle}>NEW ARRIVALS</h3>
 			<div className={styles.productList}>
-				{allProducts.products.slice(0, 4).map((product: any) => {
+				{productsToRender.slice(0, 4).map((product: any) => {
 					return (
 						<ProductCard
 							key={product.id}
