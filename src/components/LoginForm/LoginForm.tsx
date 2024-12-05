@@ -11,26 +11,26 @@ import authImg from "@/public/Hero/hero3.jpg";
 import lock from "@/public/common/lock.svg";
 import mail from "@/public/common/mail.svg";
 
+const loginEndpoint: string = process.env.NEXT_PUBLIC_LOGIN_ENDPOINT || "";
+
 export const LoginForm = () => {
 	const router = useRouter();
 	const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 	const submit = (values: LoginProps, actions: FormikHelpers<LoginProps>) => {
 		setErrorMessage(undefined);
 		//TODO: Use the real endpoint
+		console.log(process.env.NEXT_PUBLIC_LOGIN_ENDPOINT);
 		axios
-			.post("https://dummyjson.com/user/login", {
-				username: values.email,
+			.post(loginEndpoint, {
+				email: values.email,
 				password: values.password,
-				expireInMins: 30,
 			})
 			.then((response) => {
 				console.log(response);
-				actions.setSubmitting(false);
-				router.push("/");
 			})
 			.catch((error) => {
 				console.log(error);
-				setErrorMessage(error.response.data.message);
+				setErrorMessage(error.response?.data?.message || "An error occurred");
 				actions.setSubmitting(false);
 			});
 	};
@@ -86,7 +86,9 @@ export const LoginForm = () => {
 						{errors.password && <p className={styles.error}>{errors.password}</p>}
 					</label>
 					<input type="submit" value="Log In" className={styles.submitBtn} disabled={!isValid || isSubmitting} />
-					<p className={styles.forgotPassword} onClick={() => router.push("/forgot-password")}>Forgot your password?</p>
+					<p className={styles.forgotPassword} onClick={() => router.push("/forgot-password")}>
+						Forgot your password?
+					</p>
 					{errorMessage && <p className={styles.responseErrorMessage}>{errorMessage}</p>}
 				</div>
 
