@@ -1,6 +1,8 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/store";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -46,8 +48,10 @@ export const OurHappyCustomers: React.FC<OurHappyCustomersProps> = ({ allProduct
 		}
 	}, []);
 
+	const { items } = useSelector((state: RootState) => state.products);
+	const products = items.length > 0 ? items : allProducts.products;
 	// Sort best reviews
-	const bestReviews = allProducts.products.map((product: any) => {
+	const bestReviews = products.map((product: any) => {
 		return {
 			id: product.id,
 			title: product.title,
