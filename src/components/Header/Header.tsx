@@ -2,6 +2,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 import { IoIosArrowDown } from "react-icons/io";
 import { GoSearch } from "react-icons/go";
 import { SlBasket } from "react-icons/sl";
@@ -39,6 +41,8 @@ export const Header: React.FC = () => {
 		setShopPopUp("none");
 	};
 
+	// Retrieve cart quantity from Redux store
+	const cartQuantity = useSelector((state: RootState) => state.cart.items.reduce((total, item) => total + item.quantity, 0));
 	return (
 		<>
 			<header className={styles.header}>
@@ -95,9 +99,10 @@ export const Header: React.FC = () => {
 					<span onClick={handleMobileInput}>
 						<GoSearch />
 					</span>
-					<span>
+					<span className={styles.cartWrapper}>
 						<Link href={"/cart"}>
 							<SlBasket />
+							{cartQuantity > 0 && <span className={styles.cartQuantity}>{cartQuantity}</span>}
 						</Link>
 					</span>
 					<span>

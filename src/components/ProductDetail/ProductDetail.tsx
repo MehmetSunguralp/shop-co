@@ -1,6 +1,9 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/store";
+import { addToCart } from "@/store/slices/cartSlice";
 import { ProductDetailProps } from "@/types/ProductDetailProps";
 import { CommentCard } from "../CommentCard/CommentCard";
 import { ProductsProps } from "@/types/ProductsProps";
@@ -56,6 +59,15 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 	product?.reviews.forEach(() => {
 		counter += 1;
 	});
+
+	//
+	const dispatch = useDispatch();
+
+	const handleAddToCart = () => {
+		if (product) {
+			dispatch(addToCart({ id: product.id, price: product.price, quantity: 1 }));
+		}
+	};
 	if (!product) {
 		return (
 			<div className={styles.loadingSpinner}>
@@ -225,7 +237,7 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 						<button className={styles.operationBtn} onClick={() => handleNumberOfProduct("increment")}>
 							<Image src={plusIcon} alt="plus" />
 						</button>
-						<button className={styles.addButton}>Add to Cart</button>
+						<button className={styles.addButton} onClick={handleAddToCart}>Add to Cart</button>
 					</div>
 				</div>
 			</div>

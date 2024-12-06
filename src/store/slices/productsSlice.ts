@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts as fetchProductsAPI } from "@/api/api";
+import { ProductCardProps } from "@/types/ProductCardProps";
 
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
 	const data = await fetchProductsAPI();
@@ -7,7 +8,7 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
 });
 
 type ProductsState = {
-	items: any[];
+	items: ProductCardProps[];
 	status: "idle" | "loading" | "succeeded" | "failed";
 	error: string | null;
 };
