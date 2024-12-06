@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Providers } from "./providers";
+import NextTopLoader from "nextjs-toploader";
 import { SignUpWarner } from "@/components/SignUpWarner/SignUpWarner";
 import { Header } from "@/components/Header/Header";
 import { Footer } from "@/components/Footer/Footer";
@@ -18,6 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={styles.body}>
+				<NextTopLoader color="#808080" />
 				<Providers>
 					<SignUpWarner />
 					<Header />
