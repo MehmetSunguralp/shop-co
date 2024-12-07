@@ -198,6 +198,13 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				@media screen and (max-width: 1050px) {
+					font-size: 14px;
+					width: 22px;
+					height: 22px;
+					top: -10px;
+					right: -10px;
+				}
 			}
 		}
 	}
