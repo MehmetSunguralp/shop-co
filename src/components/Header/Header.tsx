@@ -42,7 +42,7 @@ export const Header: React.FC = () => {
 	};
 
 	// Retrieve cart quantity from Redux store
-	const cartQuantity = useSelector((state: RootState) => state.cart.items.reduce((total, item) => total + item.quantity, 0));
+	const cartQuantity = useSelector((state: RootState) => state.cart.items.length);
 	return (
 		<>
 			<header className={styles.header}>

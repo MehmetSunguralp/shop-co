@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store";
-import { addToCart } from "@/store/slices/cartSlice";
+import { addToCart, updateQuantity } from "@/store/slices/cartSlice";
 import { ProductDetailProps } from "@/types/ProductDetailProps";
 import { CommentCard } from "../CommentCard/CommentCard";
 import { ProductsProps } from "@/types/ProductsProps";
@@ -20,8 +20,15 @@ interface ProductDetailsProps {
 }
 
 export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allProducts }) => {
+	//States
 	const [sortOption, setSortOption] = useState<"latest" | "oldest" | "highToLow" | "lowToHigh">("latest");
 	const [numberOfProduct, setNumberOfProduct] = useState<number>(1);
+	const [product, setProduct] = useState<ProductDetailProps | null>(null);
+	const [selectedSize, setSelectedSize] = useState<string>("");
+	const [mainImage, setMainImage] = useState<string>("");
+
+	const dispatch = useDispatch();
+
 	const handleNumberOfProduct = (action: string) => {
 		if (action === "increment") {
 			setNumberOfProduct((number) => number + 1);
@@ -30,13 +37,9 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 		}
 	};
 
-	const [product, setProduct] = useState<ProductDetailProps | null>(null);
-	const [selectedSize, setSelectedSize] = useState<string>("");
 	const handleSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setSelectedSize(event.target.value);
 	};
-
-	const [mainImage, setMainImage] = useState<string>("");
 
 	const findProductById = useCallback(async () => {
 		try {
@@ -49,6 +52,7 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 			console.error("Error fetching product data:", error);
 		}
 	}, [productId]);
+	const cartItems = useSelector((state: RootState) => state.cart.items);
 
 	useEffect(() => {
 		findProductById();
@@ -61,13 +65,7 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 	});
 
 	//
-	const dispatch = useDispatch();
 
-	const handleAddToCart = () => {
-		if (product) {
-			dispatch(addToCart({ id: product.id, price: product.price, quantity: 1 }));
-		}
-	};
 	if (!product) {
 		return (
 			<div className={styles.loadingSpinner}>
@@ -113,6 +111,32 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 		return 0;
 	});
 
+	//Add to cart
+	const handleAddToCart = () => {
+		if (product && selectedSize) {
+			const isInCart = cartItems.find((item) => item.id === Number(productId) && item.size === selectedSize.toLowerCase());
+			if (!isInCart) {
+				dispatch(
+					addToCart({
+						id: product.id,
+						price: Number(newPrice.toFixed(2)),
+						quantity: numberOfProduct,
+						size: selectedSize.toLowerCase(),
+					})
+				);
+				setNumberOfProduct(1);
+			} else if (isInCart) {
+				dispatch(
+					updateQuantity({
+						id: Number(productId),
+						quantity: numberOfProduct,
+						size: selectedSize.toLowerCase(),
+					})
+				);
+				setNumberOfProduct(1);
+			}
+		}
+	};
 	return (
 		<div className={styles.productDetail}>
 			<div className={styles.productSection}>
@@ -237,7 +261,9 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 						<button className={styles.operationBtn} onClick={() => handleNumberOfProduct("increment")}>
 							<Image src={plusIcon} alt="plus" />
 						</button>
-						<button className={styles.addButton} onClick={handleAddToCart}>Add to Cart</button>
+						<button className={styles.addButton} onClick={handleAddToCart}>
+							Add to Cart
+						</button>
 					</div>
 				</div>
 			</div>
