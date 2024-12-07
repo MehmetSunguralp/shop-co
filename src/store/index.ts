@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
 import productsReducer from "./slices/productsSlice";
 //import wishlistReducer from "./slices/wishlistSlice";
 import cartReducer from "./slices/cartSlice";
