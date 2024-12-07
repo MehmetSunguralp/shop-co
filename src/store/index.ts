@@ -1,15 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "./slices/productsSlice";
-//import wishlistReducer from "./slices/wishlistSlice";
 import cartReducer from "./slices/cartSlice";
-export const store = configureStore({
-	reducer: {
-		products: productsReducer,
-		//wishlist: wishlistReducer,
-		cart: cartReducer,
-	},
-});
+import persistCartMiddleware from "./middleware/persistCartMiddleware";
 
+export const store = configureStore({
+  reducer: {
+    products: productsReducer,
+    cart: cartReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(persistCartMiddleware), // Adding the middleware
+});
 
 // Infer RootState and AppDispatch types
 export type RootState = ReturnType<typeof store.getState>;
