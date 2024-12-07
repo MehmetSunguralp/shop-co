@@ -19,7 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={styles.body}>
-				<NextTopLoader color="#808080" />
+				<NextTopLoader color="#808080" height={6} showSpinner={false} />
 				<Providers>
 					<SignUpWarner />
 					<Header />
