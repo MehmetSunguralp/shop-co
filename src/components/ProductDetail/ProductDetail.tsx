@@ -115,28 +115,25 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 	const handleAddToCart = () => {
 		if (product && selectedSize) {
 			const isInCart = cartItems.find((item) => item.id === Number(productId) && item.size === selectedSize.toLowerCase());
+			const cartItemData = {
+				id: product.id,
+				price: Number(newPrice.toFixed(2)),
+				quantity: numberOfProduct,
+				size: selectedSize.toLowerCase(),
+				title: product.title, // Add title
+				thumbnail: product.images[0], // Add thumbnail
+			};
+
 			if (!isInCart) {
-				dispatch(
-					addToCart({
-						id: product.id,
-						price: Number(newPrice.toFixed(2)),
-						quantity: numberOfProduct,
-						size: selectedSize.toLowerCase(),
-					})
-				);
+				dispatch(addToCart(cartItemData));
 				setNumberOfProduct(1);
 			} else if (isInCart) {
-				dispatch(
-					updateQuantity({
-						id: Number(productId),
-						quantity: numberOfProduct,
-						size: selectedSize.toLowerCase(),
-					})
-				);
+				dispatch(updateQuantity(cartItemData));
 				setNumberOfProduct(1);
 			}
 		}
 	};
+
 	return (
 		<div className={styles.productDetail}>
 			<div className={styles.productSection}>
