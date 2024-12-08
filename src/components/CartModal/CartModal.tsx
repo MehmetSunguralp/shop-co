@@ -1,7 +1,7 @@
 import ReactModal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
-import { clearCart, removeFromCart } from "@/store/slices/cartSlice";
+import { clearCart, removeFromCart, updateQuantity } from "@/store/slices/cartSlice";
 import styles from "./CartModal.module.scss";
 
 interface CartModalProps {
@@ -14,14 +14,24 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onRequestClose }) => {
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
   const dispatch = useDispatch();
 
-  const handleRemoveItem = (id: number) => {
-    dispatch(removeFromCart(id));
+  const handleRemoveItem = (id: number, size: string) => {
+    dispatch(removeFromCart({ id, size }));
   };
 
   const handleClearCart = () => {
     dispatch(clearCart());
   };
 
+  const handleIncrementQuantity = (id: number, size: string) => {
+    dispatch(updateQuantity({ id, size, quantity: 1 }));
+  };
+
+  const handleDecrementQuantity = (id: number, size: string) => {
+    const item = cartItems.find((item) => item.id === id && item.size === size);
+    if (item && item.quantity > 1) {
+      dispatch(updateQuantity({ id, size, quantity: -1 }));
+    }
+  };
   return (
     <ReactModal
       isOpen={isOpen}
@@ -37,12 +47,23 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onRequestClose }) => {
           <ul>
             {cartItems.map((item) => (
               <li key={item.id} className={styles.cartItem}>
-                <div>
-                  <p>Size: {item.size}</p>
-                  <p>Quantity: {item.quantity}</p>
-                  <p>Price: ${item.price}</p>
+                <div className={styles.cartItemDetails}>
+                  {/*  <Image src={item.thumbnail} alt={item.title} width={100} height={100} className={styles.cartItemThumbnail} /> */}
+                  <div>
+                    <p>Size: {item.size}</p>
+                    <p>Price: ${item.price.toFixed(2)}</p>
+                  </div>
                 </div>
-                <button onClick={() => handleRemoveItem(item.id)}>Remove</button>
+
+                <div className={styles.quantityControl}>
+                  <button onClick={() => handleDecrementQuantity(item.id, item.size)}>-</button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => handleIncrementQuantity(item.id, item.size)}>+</button>
+                </div>
+
+                <div className={styles.actions}>
+                  <button onClick={() => handleRemoveItem(item.id, item.size)}>Remove</button>
+                </div>
               </li>
             ))}
           </ul>
