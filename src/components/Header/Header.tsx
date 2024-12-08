@@ -2,6 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import CartModal from "../CartModal/CartModal";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store";
 import { IoIosArrowDown } from "react-icons/io";
@@ -17,6 +18,8 @@ export const Header: React.FC = () => {
 	const mobileSearchRef = useRef<HTMLInputElement>(null);
 	const [shopPopUp, setShopPopUp] = useState("none");
 	const [mobileInput, setMobileInput] = useState("none");
+	const [hamburgerMenu, setHamburgerMenu] = useState("translateY(-120vh)");
+	const [isCartModalOpen, setCartModalOpen] = useState<boolean>(false);
 	const handleMobileInput = () => {
 		setMobileInput((prevVisibility) => (prevVisibility == "none" ? "flex" : "none"));
 	};
@@ -28,7 +31,6 @@ export const Header: React.FC = () => {
 	const hideMobileSearchInput = () => {
 		handleMobileInput();
 	};
-	const [hamburgerMenu, setHamburgerMenu] = useState("translateY(-120vh)");
 	const handleHamburgerMenu = () => {
 		setHamburgerMenu((prevPlace) => (prevPlace == "translateY(-120vh)" ? "translateY(0)" : "translateY(-120vh)"));
 	};
@@ -39,6 +41,14 @@ export const Header: React.FC = () => {
 
 	const handleMouseLeave = (): void => {
 		setShopPopUp("none");
+	};
+
+	const handleCartClick = () => {
+		setCartModalOpen(true);
+	};
+
+	const closeCartModal = () => {
+		setCartModalOpen(false);
 	};
 
 	// Retrieve cart quantity from Redux store
@@ -100,10 +110,14 @@ export const Header: React.FC = () => {
 						<GoSearch />
 					</span>
 					<span className={styles.cartWrapper}>
-						<Link href={"/cart"}>
+						{/* <Link href={"/cart"}>
 							<SlBasket />
 							{cartQuantity > 0 && <span className={styles.cartQuantity}>{cartQuantity}</span>}
-						</Link>
+						</Link> */}
+						<div onClick={handleCartClick }>
+							<SlBasket />
+							{cartQuantity > 0 && <span className={styles.cartQuantity}>{cartQuantity}</span>}
+						</div>
 					</span>
 					<span>
 						<Link href={"/profile"}>
@@ -159,6 +173,7 @@ export const Header: React.FC = () => {
 					</ul>
 				</nav>
 			</div>
+			<CartModal isOpen={isCartModalOpen} onRequestClose={closeCartModal} />
 		</>
 	);
 };
