@@ -23,115 +23,88 @@
 	border-radius: 8px;
 	max-width: 800px;
 	width: 100%;
-
+	outline: none;
 	font-family: $secondary-font;
 }
 
 .cartModal {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 	::-webkit-scrollbar {
-		width: 10px;
+		width: 4px;
 	}
 	::-webkit-scrollbar-track {
 		background: $hero-bg;
 	}
 	::-webkit-scrollbar-thumb {
 		background: $accent-color;
+		border-radius: 20px;
 	}
 	::-webkit-scrollbar-thumb:hover {
 		background: $gray;
 		cursor: ns-resize;
 	}
-	h2 {
-		margin-bottom: 1rem;
+	.yourCart {
+		font-family: $primary-font;
+		text-align: center;
+		font-size: 30px;
+	}
+	.closeBtn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 100px;
+		border: none;
+		background-color: $primary-color;
+		cursor: pointer;
+		transition: all 0.2s ease-in-out;
+		&:hover {
+			transform: rotate(45deg);
+		}
+	}
+	.emptyWarning {
+		font-size: 40px;
+		text-align: center;
+		margin-block: 20px;
 	}
 	ul {
 		list-style: none;
-		padding: 0;
+		padding: 6px;
 		max-height: 70vh;
 		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 	}
-	.cartItem {
+	.cartSummary {
 		display: flex;
-		justify-content: space-between;
-		background-color: $primary-color;
-		border-radius: 10px;
+		justify-content: space-around;
 		align-items: center;
-		.cartItemDetails {
+		.clearBtn {
+			width: 200px;
+			height: 40px;
 			display: flex;
-			align-items: center;
-			gap: 20px;
-			.textInfo {
-				display: flex;
-				flex-direction: column;
-				width: 40ch;
-			}
-		}
-	}
-	.selectQuantityContainer {
-		display: flex;
-		align-items: center;
-		gap: 30px;
-		.operationBtn {
-			background-color: transparent;
-			border: none;
-			align-items: center;
 			justify-content: center;
-			height: 30px;
-			max-width: 30px;
-			width: 100%;
-			display: flex;
-			cursor: pointer;
-			border-radius: 20px;
-			transition: all 0.1s ease-in-out;
-			&:hover {
-				background-color: $gray;
-				@media only screen and (max-width: 600px) {
-					background-color: inherit;
-				}
-			}
-		}
-		.quantityDisplay {
-			width: 50px;
-			text-align: center;
+			align-items: center;
 			font-size: 18px;
-		}
-		.addButton {
-			width: 400px;
-			height: 52px;
+			font-family: $secondary-font;
+			border: none;
+			border-radius: 100px;
 			background-color: $accent-color;
 			color: $primary-color;
-			border: none;
-			outline: none;
-			font-family: $secondary-font;
 			cursor: pointer;
-			font-size: 16px;
-			border-radius: 50px;
-			transition: all 0.1s ease-in-out;
-			@media only screen and (max-width: 1050px) {
-				font-size: 14px;
-			}
+			transition: all 0.2s ease-in-out;
+			text-decoration: none;
 			&:hover {
-				border: 1px solid $accent-color;
 				background-color: $primary-color;
 				color: $accent-color;
-			}
-		}
-	}
-
-	.actions {
-		display: flex;
-		justify-content: space-between;
-		button {
-			padding: 0.5rem 1rem;
-			border: none;
-			background: #0070f3;
-			color: white;
-			cursor: pointer;
-			&:hover {
-				background: #005bb5;
 			}
 		}
 	}

@@ -26,6 +26,7 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 	const [product, setProduct] = useState<ProductDetailProps | null>(null);
 	const [selectedSize, setSelectedSize] = useState<string>("");
 	const [mainImage, setMainImage] = useState<string>("");
+	const [sizeWarningVisibility, setSizeWarningVisibility] = useState<string>("none");
 
 	const dispatch = useDispatch();
 
@@ -131,6 +132,9 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 				dispatch(updateQuantity(cartItemData));
 				setNumberOfProduct(1);
 			}
+			setSizeWarningVisibility("none");
+		} else if (!selectedSize) {
+			setSizeWarningVisibility("block");
 		}
 	};
 
@@ -248,6 +252,9 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 								<span className={styles.size}>X-Large</span>
 							</label>
 						</div>
+						<p className={styles.sizeWarning} style={{ display: sizeWarningVisibility }}>
+							Please select a size!
+						</p>
 					</div>
 
 					<div className={styles.selectQuantityContainer}>

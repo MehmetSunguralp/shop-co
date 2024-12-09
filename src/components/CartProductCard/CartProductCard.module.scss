@@ -1,0 +1,72 @@
+@use "../../app/variables" as *;
+.cartItem {
+	display: flex;
+	justify-content: space-between;
+	background-color: $primary-color;
+	border-radius: 10px;
+	align-items: center;
+	padding: 10px 20px 10px 10px !important;
+	.cartItemDetails {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		.thumbnailWrapper {
+			width: 150px;
+			height: 150px;
+			position: relative;
+			* {
+				object-fit: contain;
+			}
+		}
+		.textInfo {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			width: 40ch;
+			.productTitle {
+				text-transform: uppercase;
+			}
+			.size {
+				text-transform: capitalize;
+				color: $gray;
+				font-weight: 500;
+				span {
+					font-weight: 400;
+				}
+			}
+			.price {
+				font-size: 18px;
+				font-weight: 600;
+			}
+		}
+	}
+	.selectQuantityContainer {
+		user-select: none;
+		display: flex;
+		align-items: center;
+		gap: 0px;
+		background-color: $secondary-color;
+		border-radius: 100px;
+		padding: 4px;
+		.operationBtn {
+			background-color: transparent;
+			border: none;
+			align-items: center;
+			justify-content: center;
+			height: 30px;
+			max-width: 30px;
+			width: 100%;
+			display: flex;
+			cursor: pointer;
+			border-radius: 20px;
+		}
+		.quantityDisplay {
+			width: 50px;
+			text-align: center;
+			font-size: 18px;
+		}
+	}
+	.removeItem {
+		cursor: pointer;
+	}
+}

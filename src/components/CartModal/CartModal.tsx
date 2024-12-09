@@ -1,11 +1,12 @@
+import Image from "next/image";
 import ReactModal from "react-modal";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
-import Image from "next/image";
-import { clearCart, removeFromCart, updateQuantity } from "@/store/slices/cartSlice";
-import minusIcon from "@/public/common/minus.svg"
-import plusIcon from "@/public/common/plus.svg"
+import { clearCart } from "@/store/slices/cartSlice";
+import { CartProductCard } from "../CartProductCard/CartProductCard";
+import crossIcon from "@/public/common/cross.svg";
 import styles from "./CartModal.module.scss";
+import Link from "next/link";
 
 interface CartModalProps {
 	isOpen: boolean;
@@ -16,24 +17,11 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onRequestClose }) => {
 	const cartItems = useSelector((state: RootState) => state.cart.items);
 	const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 	const dispatch = useDispatch();
-
-	const handleRemoveItem = (id: number, size: string) => {
-		dispatch(removeFromCart({ id, size }));
-	};
-
 	const handleClearCart = () => {
 		dispatch(clearCart());
 	};
-
-	const handleIncrementQuantity = (id: number, size: string) => {
-		dispatch(updateQuantity({ id, size, quantity: 1 }));
-	};
-
-	const handleDecrementQuantity = (id: number, size: string) => {
-		const item = cartItems.find((item) => item.id === id && item.size === size);
-		if (item && item.quantity > 1) {
-			dispatch(updateQuantity({ id, size, quantity: -1 }));
-		}
+	const directToCartPage = () => {
+		onRequestClose();
 	};
 	return (
 		<ReactModal
@@ -43,52 +31,30 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onRequestClose }) => {
 			overlayClassName={styles.modalOverlay}
 		>
 			<div className={styles.cartModal}>
-				<h2>Your Cart</h2>
+				<button onClick={onRequestClose} className={styles.closeBtn}>
+					<Image src={crossIcon} alt="close-modal" />
+				</button>
+				<h2 className={styles.yourCart}>Your Cart</h2>
 				{cartItems.length === 0 ? (
-					<p>Your cart is empty.</p>
+					<p className={styles.emptyWarning}>Please add products to process</p>
 				) : (
-					<ul>
-						{cartItems.map((item) => (
-							<li key={item.id} className={styles.cartItem}>
-								<div className={styles.cartItemDetails}>
-									{/* Display product thumbnail */}
-									<Image src={item.thumbnail} alt={item.title} width={100} height={100} className={styles.cartItemThumbnail} />
-
-									<div className={styles.textInfo}>
-										{/* Display product title */}
-										<h3>{item.title}</h3>
-
-										{/* Display product size and price */}
-										<p>Size: {item.size}</p>
-										<p>Price: ${item.price.toFixed(2)}</p>
-									</div>
-								</div>
-
-								<div className={styles.selectQuantityContainer}>
-									<button className={styles.operationBtn} onClick={() => handleDecrementQuantity(item.id, item.size)}>
-										<Image src={minusIcon} alt="minus" />
-									</button>
-									<span className={styles.quantityDisplay}>{item.quantity}</span>
-
-									<button className={styles.operationBtn} onClick={() => handleIncrementQuantity(item.id, item.size)}>
-										<Image src={plusIcon} alt="plus" />
-									</button>
-								</div>
-
-								<div className={styles.actions}>
-									<button onClick={() => handleRemoveItem(item.id, item.size)}>Remove</button>
-								</div>
-							</li>
-						))}
-					</ul>
+					<>
+						<ul>
+							{cartItems.map((item, index) => {
+								return <CartProductCard item={item} key={index} />;
+							})}
+						</ul>
+						<div className={styles.cartSummary}>
+							<h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+							<button onClick={handleClearCart} className={styles.clearBtn}>
+								Clear Cart
+							</button>
+							<Link href={"/cart"} onClick={directToCartPage} className={styles.clearBtn}>
+								Checkout
+							</Link>
+						</div>
+					</>
 				)}
-				<div className={styles.cartSummary}>
-					<h3>Total Price: ${totalPrice.toFixed(2)}</h3>
-				</div>
-				<div className={styles.actions}>
-					<button onClick={handleClearCart}>Clear Cart</button>
-					<button onClick={onRequestClose}>Close</button>
-				</div>
 			</div>
 		</ReactModal>
 	);
