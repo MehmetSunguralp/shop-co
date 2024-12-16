@@ -12,6 +12,17 @@
 	justify-content: center;
 	padding-block: 50px;
 	gap: 20px;
+	flex-wrap: wrap;
+	h1 {
+		font-family: $primary-font;
+		font-size: 36px;
+		flex: 1 0 100%;
+		text-align: center;
+	}
+	@media screen and (max-width: 800px) {
+		flex-direction: column;
+		align-items: center;
+	}
 	.emptyWarning {
 		font-size: 40px;
 		text-align: center;
@@ -25,14 +36,14 @@
 		border-radius: 20px;
 		list-style: none;
 		padding: 6px;
-		max-height: 70vh;
+		max-height: 600px;
+		height: 100%;
 		max-width: 800px;
 		overflow-y: auto;
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		@media screen and (max-width: 500px) {
-			max-height: 340px;
+		@media screen and (max-width: 1440px) {
 		}
 	}
 	.orderSummary {
@@ -45,6 +56,20 @@
 		width: 100%;
 		gap: 16px;
 		height: max-content;
+		@media screen and (max-width: 1440px) {
+			max-width: 250px;
+		}
+		@media screen and (max-width: 1050px) {
+			max-width: 200px;
+		}
+		@media screen and (max-width: 800px) {
+			max-width: 300px;
+		}
+		h2 {
+			@media screen and (max-width: 1050px) {
+				font-size: 20px;
+			}
+		}
 		.divider {
 			background-color: $secondary-color;
 			border: none;
@@ -54,6 +79,9 @@
 			display: flex;
 			justify-content: space-between;
 			font-size: 20px;
+			@media screen and (max-width: 1050px) {
+				font-size: 16px;
+			}
 			.fee {
 				color: $gray;
 				font-weight: 300;
@@ -68,6 +96,11 @@
 		.promoWrapper {
 			display: flex;
 			justify-content: space-between;
+			@media screen and (max-width: 1050px) {
+				flex-direction: column;
+				gap: 10px;
+				align-items: center;
+			}
 			.promoCodeInputWrapper {
 				.promoCodeInput {
 					width: 326px;
@@ -79,6 +112,13 @@
 					font-size: 18px;
 					text-indent: 30px;
 					font-family: $secondary-font;
+					@media screen and (max-width: 1440px) {
+						width: 150px;
+					}
+					@media screen and (max-width: 1050px) {
+						width: 100%;
+						height: 36px;
+					}
 				}
 			}
 			.applyPromoBtn {
@@ -98,6 +138,13 @@
 					color: $accent-color;
 					cursor: pointer;
 					border: 1px solid $accent-color;
+				}
+				@media screen and (max-width: 1440px) {
+					width: 60px;
+				}
+				@media screen and (max-width: 1050px) {
+					width: 100%;
+					height: 36px;
 				}
 			}
 		}

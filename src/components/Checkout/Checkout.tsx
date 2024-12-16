@@ -9,6 +9,7 @@ const Checkout: React.FC = () => {
 	const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
 	return (
 		<section className={styles.checkout}>
+			<h1>YOUR CART</h1>
 			{cartItems.length === 0 ? (
 				<p className={styles.emptyWarning}>Please add products to process</p>
 			) : (
@@ -39,11 +40,11 @@ const Checkout: React.FC = () => {
 						</span>
 						<span className={styles.promoWrapper}>
 							<div className={styles.promoCodeInputWrapper}>
-								<input className={styles.promoCodeInput} type="text" placeholder="Enter Promo Code" />
+								<input className={styles.promoCodeInput} type="text" placeholder="Promo Code" />
 							</div>
 							<button className={styles.applyPromoBtn}>Apply</button>
 						</span>
-						<button className={styles.goCheckoutBtn}>Go To Checkout</button>
+						<button className={styles.goCheckoutBtn}>Go to Checkout</button>
 					</form>
 				</>
 			)}
