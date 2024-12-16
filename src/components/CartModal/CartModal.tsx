@@ -25,6 +25,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onRequestClose }) => {
 	};
 	return (
 		<ReactModal
+			ariaHideApp={false}
 			isOpen={isOpen}
 			onRequestClose={onRequestClose}
 			className={styles.modalContent}
@@ -45,7 +46,7 @@ const CartModal: React.FC<CartModalProps> = ({ isOpen, onRequestClose }) => {
 							})}
 						</ul>
 						<div className={styles.cartSummary}>
-							<h3>Total Price: ${totalPrice.toFixed(2)}</h3>
+							<h3 className={styles.totalPrice}>Total Price: ${totalPrice.toFixed(2)}</h3>
 							<button onClick={handleClearCart} className={styles.clearBtn}>
 								Clear Cart
 							</button>

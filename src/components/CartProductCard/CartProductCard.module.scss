@@ -6,10 +6,24 @@
 	border-radius: 10px;
 	align-items: center;
 	padding: 10px 20px 10px 10px !important;
+	position: relative;
+	@media screen and (max-width: 500px) {
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+	}
 	.cartItemDetails {
 		display: flex;
 		align-items: center;
 		gap: 20px;
+		@media screen and (max-width: 1050px) {
+			gap: 14px;
+		}
+		@media screen and (max-width: 500px) {
+			flex-direction: column;
+			gap: 10px;
+			align-items: center;
+		}
 		.thumbnailWrapper {
 			width: 150px;
 			height: 150px;
@@ -17,14 +31,45 @@
 			* {
 				object-fit: contain;
 			}
+			@media screen and (max-width: 1050px) {
+				width: 100px;
+				height: 100px;
+			}
+			@media screen and (max-width: 800px) {
+				width: 80px;
+				height: 80px;
+			}
+			@media screen and (max-width: 500px) {
+				width: 100px;
+				height: 100px;
+			}
 		}
 		.textInfo {
 			display: flex;
 			flex-direction: column;
 			gap: 10px;
 			width: 40ch;
+			@media screen and (max-width: 1050px) {
+				gap: 4px;
+				width: 26ch;
+			}
+			@media screen and (max-width: 800px) {
+				gap: 4px;
+				width: 14ch;
+			}
+			@media screen and (max-width: 500px) {
+				gap: 4px;
+				width: 18ch;
+				align-items: center;
+			}
 			.productTitle {
 				text-transform: uppercase;
+				@media screen and (max-width: 1050px) {
+					font-size: 16px;
+				}
+				@media screen and (max-width: 800px) {
+					font-size: 14px;
+				}
 			}
 			.size {
 				text-transform: capitalize;
@@ -33,10 +78,16 @@
 				span {
 					font-weight: 400;
 				}
+				@media screen and (max-width: 800px) {
+					font-size: 14px;
+				}
 			}
 			.price {
 				font-size: 18px;
 				font-weight: 600;
+				@media screen and (max-width: 800px) {
+					font-size: 16px;
+				}
 			}
 		}
 	}
@@ -59,14 +110,27 @@
 			display: flex;
 			cursor: pointer;
 			border-radius: 20px;
+			@media screen and (max-width: 800px) {
+				height: 20px;
+				max-width: 20px;
+			}
 		}
 		.quantityDisplay {
 			width: 50px;
 			text-align: center;
 			font-size: 18px;
+			@media screen and (max-width: 800px) {
+				width: 30px;
+				font-size: 16px;
+			}
 		}
 	}
 	.removeItem {
 		cursor: pointer;
+		@media screen and (max-width: 500px) {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
 	}
 }
