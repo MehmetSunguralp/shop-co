@@ -1,0 +1,137 @@
+@use "../../app/variables" as *;
+
+.checkout * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: $secondary-font;
+}
+
+.checkout {
+	display: flex;
+	justify-content: center;
+	padding-block: 50px;
+	gap: 20px;
+	.emptyWarning {
+		font-size: 40px;
+		text-align: center;
+		margin-block: 20px;
+		@media screen and (max-width: 800px) {
+			font-size: 20px;
+		}
+	}
+	.cartItems {
+		border: 1px solid $secondary-color;
+		border-radius: 20px;
+		list-style: none;
+		padding: 6px;
+		max-height: 70vh;
+		max-width: 800px;
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		@media screen and (max-width: 500px) {
+			max-height: 340px;
+		}
+	}
+	.orderSummary {
+		border: 1px solid $secondary-color;
+		border-radius: 20px;
+		padding: 16px;
+		display: flex;
+		flex-direction: column;
+		max-width: 500px;
+		width: 100%;
+		gap: 16px;
+		height: max-content;
+		.divider {
+			background-color: $secondary-color;
+			border: none;
+			height: 1px;
+		}
+		.feeRow {
+			display: flex;
+			justify-content: space-between;
+			font-size: 20px;
+			.fee {
+				color: $gray;
+				font-weight: 300;
+			}
+			.fee.total {
+				font-weight: 500;
+			}
+			.price {
+				font-weight: 700;
+			}
+		}
+		.promoWrapper {
+			display: flex;
+			justify-content: space-between;
+			.promoCodeInputWrapper {
+				.promoCodeInput {
+					width: 326px;
+					height: 48px;
+					border: none;
+					outline: none;
+					background-color: $secondary-color;
+					border-radius: 50px;
+					font-size: 18px;
+					text-indent: 30px;
+					font-family: $secondary-font;
+				}
+			}
+			.applyPromoBtn {
+				width: 120px;
+				height: 48px;
+				border: none;
+				outline: none;
+				border-radius: 50px;
+				background-color: $accent-color;
+				color: $primary-color;
+				font-size: 16px;
+				font-family: $secondary-font;
+				cursor: pointer;
+				transition: all 0.1s ease-in-out;
+				&:hover {
+					background-color: $primary-color;
+					color: $accent-color;
+					cursor: pointer;
+					border: 1px solid $accent-color;
+				}
+			}
+		}
+		.goCheckoutBtn {
+			height: 48px;
+			border: none;
+			outline: none;
+			border-radius: 50px;
+			background-color: $accent-color;
+			color: $primary-color;
+			font-size: 16px;
+			font-family: $secondary-font;
+			cursor: pointer;
+			transition: all 0.1s ease-in-out;
+			&:hover {
+				background-color: $primary-color;
+				color: $accent-color;
+				cursor: pointer;
+				border: 1px solid $accent-color;
+			}
+		}
+	}
+	::-webkit-scrollbar {
+		width: 4px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		background: $accent-color;
+		border-radius: 20px;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background: $gray;
+		cursor: ns-resize;
+	}
+}
