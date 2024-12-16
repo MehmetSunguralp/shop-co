@@ -15,7 +15,7 @@ import downArrow from "@/public/common/down-arrow.svg";
 import styles from "./ProductDetail.module.scss";
 
 interface ProductDetailsProps {
-	allProducts: ProductsProps;
+	allProducts: ProductDetailProps[];
 	productId: string;
 }
 
@@ -44,7 +44,7 @@ export const ProductDetail: React.FC<ProductDetailsProps> = ({ productId, allPro
 
 	const findProductById = useCallback(async () => {
 		try {
-			const foundProduct = allProducts.products.find((p: { id: number }) => p.id === Number(productId));
+			const foundProduct = allProducts.find((p: { id: number }) => p.id === Number(productId));
 			setProduct(foundProduct || null);
 			if (foundProduct) {
 				setMainImage(foundProduct.images[0]);

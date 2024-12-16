@@ -15,7 +15,7 @@ import { CommentCard } from "../CommentCard/CommentCard";
 import { ProductsProps } from "@/types/ProductsProps";
 
 interface OurHappyCustomersProps {
-	allProducts: ProductsProps;
+	allProducts: ProductsProps[];
 }
 
 export const OurHappyCustomers: React.FC<OurHappyCustomersProps> = ({ allProducts }) => {
@@ -49,7 +49,7 @@ export const OurHappyCustomers: React.FC<OurHappyCustomersProps> = ({ allProduct
 	}, []);
 
 	const { items } = useSelector((state: RootState) => state.products);
-	const products = items.length > 0 ? items : allProducts.products;
+	const products = items.length > 0 ? items : allProducts;
 	// Sort best reviews
 	const bestReviews = products.map((product: any) => {
 		return {

@@ -8,14 +8,14 @@ import { OurHappyCustomers } from "@/components/OurHappyCustomers/OurHappyCustom
 import { ProductsProps } from "@/types/ProductsProps";
 
 export default async function Home() {
-	const products: ProductsProps = await fetchProducts();
-	
+	const products: ProductsProps[] = await fetchProducts();
+
 	return (
 		<>
 			<Hero />
 			<BrandBanner />
 			<TopSelling allProducts={products} />
-			<NewArrivals allProducts={products}/>
+			<NewArrivals allProducts={products} />
 			<BrowseByDressStyle />
 			<OurHappyCustomers allProducts={products} />
 		</>

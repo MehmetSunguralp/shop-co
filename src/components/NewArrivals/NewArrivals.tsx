@@ -6,19 +6,19 @@ import { ProductsProps } from "@/types/ProductsProps";
 import styles from "./NewArrivals.module.scss";
 
 interface NewArrivalsProps {
-	allProducts: ProductsProps;
+	allProducts: ProductsProps[];
 }
 
 export const NewArrivals: React.FC<NewArrivalsProps> = ({ allProducts }) => {
-	const { items } = useSelector((state: RootState) => state.products);
+	// const { items } = useSelector((state: RootState) => state.products);
 
-	const productsToRender = items.length > 0 ? items : allProducts.products;
+	// const productsToRender = items.length > 0 ? items : allProducts.products;
 
 	return (
 		<section className={styles.newArrivals}>
 			<h3 className={styles.sectionTitle}>NEW ARRIVALS</h3>
 			<div className={styles.productList}>
-				{productsToRender.slice(0, 4).map((product: any) => {
+				{allProducts.slice(0, 4).map((product: any) => {
 					return (
 						<ProductCard
 							key={product.id}

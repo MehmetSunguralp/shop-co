@@ -6,17 +6,18 @@ import { ProductsProps } from "@/types/ProductsProps";
 import styles from "./TopSelling.module.scss";
 
 interface TopSellingProps {
-	allProducts: ProductsProps;
+	allProducts: ProductsProps[];
 }
 
 export const TopSelling: React.FC<TopSellingProps> = ({ allProducts }) => {
-	const { items } = useSelector((state: RootState) => state.products);
-	const productsToRender = items.length > 0 ? items : allProducts.products;
+	//const { items } = useSelector((state: RootState) => state.products);
+	//const productsToRender = items.length > 0 ? items : allProducts.products;
+	console.log(allProducts);
 	return (
 		<section className={styles.topSelling}>
 			<h3 className={styles.sectionTitle}>TOP SELLING</h3>
 			<div className={styles.productList}>
-				{productsToRender.slice(10, 14).map((product) => (
+				{allProducts.slice(10, 14).map((product: any) => (
 					<ProductCard
 						key={product.id}
 						id={product.id}
